@@ -129,3 +129,15 @@
 .product-link {
     text-decoration: none;
 }
+
+.avatar {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.p-1 .btn {
+    border: 1px solid orange;
+}
+
