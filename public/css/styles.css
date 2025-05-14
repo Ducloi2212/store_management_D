@@ -125,3 +125,7 @@
 .checked {
     color: orange;
 }
+
+.product-link {
+    text-decoration: none;
+}
