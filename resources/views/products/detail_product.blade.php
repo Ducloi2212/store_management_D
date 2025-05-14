@@ -24,13 +24,28 @@
                 <div class="shipping">
                     {{$product -> description}}
                 </div>
-                <div class="">
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star"></span>
-                    <p>4.1 average based on 254 reviews.</p>
+                <div class="d-flex flex-row mb-3">
+                    <div class="my-1">
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star"></span>
+                    </div>
+                    <div class="p-1 mx-2">
+                        <p>(2 lượt đánh giá)</p>
+                    </div>
+                </div>
+
+                <div class="d-flex flex-row mb-3 mt-4">
+                    <div class="p-1 my-2">
+                        <h6>Số lượng</h6>
+                    </div>
+                    <div class="p-1">
+                        <span class="btn btn-light"><i class='bx bx-minus'></i></span>
+                        <span class="mx-2"> 01 </span>
+                        <span class="btn btn-light"><i class='bx bx-plus'></i></span>
+                    </div>
                 </div>
 
                 <div class="">

@@ -137,3 +137,7 @@
     object-fit: cover;
 }
 
+.p-1 .btn {
+    border: 1px solid orange;
+}
+
