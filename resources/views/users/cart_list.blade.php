@@ -74,7 +74,7 @@
             </div>
             <div class="right-actions">
                 <span class="total">Total (1 item): <b>11990000đ</b></span>
-                <button class="checkout-btn">Check Out</button>
+                <a href="{{route('cart.checkOut')}}" class="checkout-btn">Check Out</a>
             </div>
         </div>
     </div>
