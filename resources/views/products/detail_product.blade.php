@@ -34,17 +34,25 @@
                 </div>
 
                 <div class="">
-                    <button class="addcart-btn"><i class='bx bx-cart-add'></i> Add to Cart</button>
-                    <button class="buy-btn">Buy Now</button>
+                    <button class="addcart-btn mt-4"><i class='bx bx-cart-add'></i> Add to Cart</button>
+                    <button class="buy-btn mt-4">Buy Now</button>
                 </div>
             </div>
         </div>
     </div>
 </div>
 
+<section class="container">
+    <hr>
+    @include('users.review')
+</section>
+
+
 <section class="container mt-4">
     <div class="d-flex">
-        <div class="flew-grow-1"><h3>Sản phẩm liên quan</h3></div>
+        <div class="flew-grow-1">
+            <h3>Sản phẩm liên quan</h3>
+        </div>
     </div>
     <div class="row">
         @foreach($products as $product)
@@ -63,7 +71,7 @@
                 </div>
             </div>
         </div>
-        
+
         @endforeach
     </div>
 </section>
