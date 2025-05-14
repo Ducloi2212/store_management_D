@@ -49,7 +49,7 @@
                 </div>
 
                 <div class="">
-                    <button class="addcart-btn mt-4"><i class='bx bx-cart-add'></i> Add to Cart</button>
+                    <a href="{{route('cart.list')}}" class="addcart-btn mt-4"><i class='bx bx-cart-add'></i> Add to Cart</a>
                     <button class="buy-btn mt-4">Buy Now</button>
                 </div>
             </div>
