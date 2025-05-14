@@ -1,4 +1,7 @@
 @extends('layouts.main')
+@push('title')
+    <title>{{ $category -> name }}</title>
+@endpush
 @section('content')
 @include('categories.listcategory')
 <section class="container mt-4">
