@@ -29,14 +29,14 @@
                     </li>
                     @guest
                     <li class="nav-item">
-                        <a class="nav-link" href="">Login</a>
+                        <a class="nav-link" href="{{ route ('login') }}">Login</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#">Sign Up</a>
                     </li>
                     @else
                     <li class="nav-item">
-                        <a class="nav-link" href="">Log out</a>
+                        <a class="nav-link" href="{{ route ('signout') }}">Log out</a>
                     </li>
                     @endguest
                 </ul>
