@@ -19,8 +19,8 @@
         <h3>My Account</h3>
         <ul>
             <li class="active">Profile</li>
-            <li>Change Password</li>
-            <li>Addresses</li>
-            <li>Settings</li>
+            <li>Order</li>
+            <li>Reset Password</li>
+            <li>Log Out</li>
         </ul>
     </div>
