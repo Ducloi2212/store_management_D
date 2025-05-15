@@ -1,6 +1,6 @@
 @extends('layouts.main')
 @push('title')
-<title>Log In</title>
+<title>Sign Up</title>
 @endpush
 @push('link')
 <link rel="stylesheet" href="{{ asset('css/crud.css') }}">
@@ -16,18 +16,18 @@
         </div>
         <div class="col-lg-4">
             <div class="login-box">
-                <h2>Log In</h2>
-                <form method="POST" action="{{ route('user.authUser') }}">
+                <h2>Sign Up</h2>
+                <form method="POST" action="{{ route('user.postUser') }}">
                     @csrf
+                    <input type="text" name="name" id="name" placeholder="Name" class="input-field" />
+
                     <input type="email" name="email" id="email" placeholder="Email" class="input-field" />
                     <div class="password-field">
                         <input type="password" name="password" id="password" placeholder="Password" class="input-field" />
                     </div>
-                    <button class="login-btn">LOG IN</button>
+                    <button class="login-btn">REGISTER</button>
                 </form>
-                <a href="#" class="forgot">Forgot Password</a>
-
-                <p class="signup-text">New to account? <a href="{{route('user.create')}}">Sign Up</a></p>
+                <p class="signup-text">New to account? <a href="{{route('login')}}">Log In</a></p>
             </div>
         </div>
     </div>

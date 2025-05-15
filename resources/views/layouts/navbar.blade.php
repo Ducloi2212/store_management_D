@@ -32,7 +32,7 @@
                         <a class="nav-link" href="{{ route ('login') }}">Login</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Sign Up</a>
+                        <a class="nav-link" href="{{ route ('user.create') }}">Sign Up</a>
                     </li>
                     @else
                     <li class="nav-item">
@@ -51,7 +51,7 @@
                 @guest
                 @else
                 <div class="mx-2">
-                    <a class=" btn btn-success" href="#"><i class='bx bxs-cart fs-6'></i>Cart</a>
+                    <a class=" btn btn-success" href="{{route('cart.list')}}"><i class='bx bxs-cart fs-6'></i>Cart</a>
                 </div>
                 <div class="">
                     <a class=" btn btn-success" href="#"><i class='bx bxs-user'></i>{{ Auth::user()->name }}</a>
