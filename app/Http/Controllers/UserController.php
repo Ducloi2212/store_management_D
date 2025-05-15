@@ -58,6 +58,14 @@ class UserController extends Controller
         return redirect("login");
     }
 
+     public function profileUser(Request $request)
+    {
+        $user_id = $request->get('id');
+        $user = User::find($user_id);
+
+        return view('users.profile', ['user' => $user]);
+    }
+
     public function signOut()
     {
         Session::flush();

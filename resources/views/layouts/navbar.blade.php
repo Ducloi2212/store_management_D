@@ -54,7 +54,7 @@
                     <a class=" btn btn-success" href="{{route('cart.list')}}"><i class='bx bxs-cart fs-6'></i>Cart</a>
                 </div>
                 <div class="">
-                    <a class=" btn btn-success" href="#"><i class='bx bxs-user'></i>{{ Auth::user()->name }}</a>
+                    <a class=" btn btn-success" href="{{route('user.profile')}}"><i class='bx bxs-user'></i>{{ Auth::user()->name }}</a>
                 </div>
                 @endguest
             </div>
