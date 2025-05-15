@@ -1,7 +1,11 @@
+@extends('layouts.main')
+@push('title')
+<title>{{ $category -> name }}</title>
+@endpush
+@section('content')
+@include('categories.listcategory')
 <section class="container mt-4">
-    <h4>IPHONE</h4>
     <div class="row">
-
         @foreach($products as $product)
 
         <div class="col-md-3 mb-4">
@@ -21,6 +25,6 @@
         </div>
 
         @endforeach
-
     </div>
 </section>
+@endsection
