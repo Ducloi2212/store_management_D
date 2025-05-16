@@ -12,35 +12,34 @@
 <!--Billing Detail-->
 <section>
     <div class="container my-5 bg-light">
-        <h3>Thêm đánh giá</h3>
+        <h3>Thông tin người nhận</h3>
         <div class="row">
             <div class="col-lg-12">
                 <form action="">
-                    
+
                     <div class="row my-3">
-                        <div class="col-lg-12 mb-3">
-                            <input type="text" class="form-control form-control-lg" placeholder="Khu vực">
-                        </div>
+                        <form action="{{ route('cart.checkout.process') }}" method="POST">
+                            @csrf
+                            <div class="col-lg-6 mb-3">
+                                <input type="text" name="name" class="form-control form-control-lg" placeholder="" value="{{ old('name', auth()->user()->name ?? '') }}" disable>
+                            </div>
 
-                        <div class="col-lg-6 mb-3">
-                            <input type="text" class="form-control form-control-lg" placeholder="Họ">
-                        </div>
+                            <div class="col-lg-6 mb-3">
+                                <input type="text" name="phone" class="form-control form-control-lg" placeholder="" value="{{ old('name', auth()->user()->phone ?? '') }}">
+                            </div>
 
-                        <div class="col-lg-6 mb-3">
-                            <input type="text" class="form-control form-control-lg" placeholder="và Tên">
-                        </div>
+                            <div class="col-lg-6 mb-3">
+                                <input type="email" name="email" class="form-control form-control-lg" placeholder="" value="{{ old('name', auth()->user()->email ?? '') }}">
+                            </div>
 
-                        <div class="col-lg-6 mb-3">
-                            <input type="text" class="form-control form-control-lg" placeholder="Số điện thoại">
-                        </div>
+                            <div class="col-lg-6 mb-3">
+                                <input type="text" name="address" class="form-control form-control-lg" placeholder="" value="{{ old('name', auth()->user()->address ?? '') }}">
+                            </div>
 
-                        <div class="col-lg-6 mb-3">
-                            <input type="text" class="form-control form-control-lg" placeholder="Email">
-                        </div>
-
-                        <div class="col-lg-12 mb-3">
-                            <textarea type="text" class="form-control form-control-lg" placeholder="Địa Chỉ" rows="4"></textarea>
-                        </div>
+                            <div class="col-lg-12 mb-3">
+                                <textarea type="text" name="note" class="form-control form-control-lg" placeholder="Ghi chú"
+                                    rows="4"></textarea>
+                            </div>
                     </div>
                 </form>
             </div>
@@ -70,30 +69,30 @@
                         </tr>
                     </thead>
                     <tbody>
+                        @foreach ($cart as $id => $item)
                         <tr>
                             <th scope="row">
                                 <div class="d-flex">
                                     <div class="">
-                                        <img src="{{ asset('images/products/phone/ip12pm.jpg') }}" style="width:70px"
+                                        <img src="{{ asset($item['image']) }}" style="width:70px"
                                             alt="image" class="rounded-3">
                                     </div>
                                     <div class="p-3">
-                                        <h5>Iphone 12 Pro Max</h5>
+                                        <h5>{{ $item['name'] }}</h5>
                                     </div>
                                 </div>
                             </th>
-                            <td> 11990000đ</td>
+                            <td> {{ number_format($item['price']) }}đ</td>
                             <td>
                                 <div class="d-flex flex-row mb-3">
                                     <div class="p-1">
-                                        <span class="btn btn-light btn-sm"><i class='bx bx-minus'></i></span>
-                                        <span class="mx-2"> 01 </span>
-                                        <span class="btn btn-light btn-sm"><i class='bx bx-plus'></i></span>
+                                        <span class="mx-2"> {{ $item['quantity'] }} </span>
                                     </div>
                                 </div>
                             </td>
-                            <td>11990000đ</td>
+                            <td>{{ number_format($item['price'] * $item['quantity']) }}đ</td>
                         </tr>
+                        @endforeach
                     </tbody>
                 </table>
 
@@ -104,7 +103,8 @@
             <div class="row">
                 <div class="col-lg-6">
                     <div class="form-check">
-                        <input type="radio" class="form-check-input" name="flexRadioDefault" id="flexRadioDefault1" checked>
+                        <input type="radio" class="form-check-input" name="flexRadioDefault" id="flexRadioDefault1"
+                            checked>
                         <label class="form-check-label" for="flexRadioDefault2">Thanh toán khi nhận hàng</label>
                     </div>
                     <div class="form-check">
@@ -113,9 +113,10 @@
                     </div>
                 </div>
                 <div class="col-lg-6 right-actions">
-                    <span class="total">Total (1 item): <b>11990000đ</b></span>
-                    <a class="btn color text-light rounded-pill">Thanh toán</i></a>
+                    <span class="total">Total (1 item): <b>{{ number_format($total) }}đ</b></span>
+                    <button class="btn color text-light rounded-pill">Thanh toán</button>
                 </div>
+                </form>
             </div>
         </div>
     </div>
