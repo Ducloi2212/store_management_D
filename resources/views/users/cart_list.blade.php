@@ -36,31 +36,45 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($cart as $item)
+                        @foreach ($cart as $id => $item)
                         <tr>
                             <th scope="row">
                                 <div class="d-flex">
                                     <div class="">
-                                        <img src="{{ asset($item->image) }}" style="width:70px"
-                                            alt="image" class="rounded-3">
+                                        <img src="{{ asset($item['image']) }}" style="width:70px" alt="image"
+                                            class="rounded-3">
                                     </div>
                                     <div class="p-3">
-                                        <h5>{{ $item->name }}</h5>
+                                        <h5>{{ $item['name'] }}</h5>
                                     </div>
                                 </div>
                             </th>
-                            <td> {{ number_format($item->price) }}đ</td>
+                            <td> {{ number_format($item['price']) }}đ</td>
                             <td>
-                                <div class="d-flex flex-row mb-3">
+                                <div class="d-flex align-items-center">
                                     <div class="p-1">
-                                        <span class="btn btn-light btn-sm"><i class='bx bx-minus'></i></span>
-                                        <span class="mx-2"> {{ $item->quantity }} </span>
-                                        <span class="btn btn-light btn-sm"><i class='bx bx-plus'></i></span>
+                                        <form action="{{ route('cart.updateQuantity', ['id' => $id]) }}" method="POST"
+                                            class="d-flex align-items-center">
+                                            @csrf
+                                            <input type="hidden" name="action" value="decrease">
+                                            <button type="submit" name="action" value="decrease"
+                                                class="btn btn-outline-warning btn-sm"><i class='bx bx-minus'></i></button>
+
+                                            <span class="mx-3">{{ $item['quantity'] }}</span>
+
+                                            <button type="submit" name="action" value="increase"
+                                                class="btn btn-outline-warning btn-sm"><i class='bx bx-plus'></i></button>
+                                        </form> 
                                     </div>
                                 </div>
                             </td>
-                            <td>{{ number_format($item->price * $item->quantity) }}đ</td>
-                            <td><a href="" class="btn btn-light"><i class='bx bxs-trash text-danger'></i></a></td>
+                            <td>{{ number_format($item['price'] * $item['quantity']) }}đ</td>
+                            <td>
+                                <form action="{{ route('cart.remove', ['id' => $id]) }}" method="POST">
+                                    @csrf
+                                    <button class="btn btn-light"><i class='bx bxs-trash text-danger'></i></button>
+                                </form>
+                            </td>
                         </tr>
                         @endforeach
                     </tbody>

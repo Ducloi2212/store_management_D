@@ -11,11 +11,7 @@ class CartController extends Controller
     {
         $cart = session()->get('cart', []);
 
-        $cartObjects = array_map(function($item) {
-            return (object) $item;
-        }, $cart);
-
-        return view('users.cart_list', ['cart' => $cartObjects]);
+        return view('users.cart_list', ['cart' => $cart]);;
     }
 
     public function addToCart(Request $request, $id)
@@ -40,5 +36,37 @@ class CartController extends Controller
         session()->put('cart', $cart);
 
         return redirect()->route('cart.list')->with('success', 'Đã thêm sản phẩm vào giỏ hàng!');
+    }
+
+    public function removeItem($id)
+    {
+        $cart = session()->get('cart', []);
+
+        if (isset($cart[$id])) {
+            unset($cart[$id]);
+            session()->put('cart', $cart);
+        }
+
+        return redirect()->route('cart.list')->with('success', 'Đã xoá sản phẩm khỏi giỏ hàng!');
+    }
+
+    public function updateQuantity(Request $request, $id)
+    {
+        $action = $request->input('action'); // 'increase' hoặc 'decrease'
+        $cart = session()->get('cart', []);
+
+        if (isset($cart[$id])) {
+            if ($action === 'increase') {
+                $cart[$id]['quantity']++;
+            } elseif ($action === 'decrease') {
+                $cart[$id]['quantity']--;
+                if ($cart[$id]['quantity'] <= 0) {
+                    unset($cart[$id]);
+                }
+            }
+            session()->put('cart', $cart);
+        }
+
+        return redirect()->route('cart.list')->with('success', 'Đã cập nhật giỏ hàng');
     }
 }
