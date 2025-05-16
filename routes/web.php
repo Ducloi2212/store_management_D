@@ -8,6 +8,7 @@ use App\Http\Controllers\CartController;
 use App\Http\Controllers\CheckOutController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\UserProfileController;
+use App\Http\Controllers\OrderController;
 
 Route::get('/home', [HomeController::class, 'home'])->name('home');
 
@@ -27,6 +28,10 @@ Route::post('/create', [UserController::class, 'postUser'])->name('user.postUser
 
 Route::get('/user/profile/{id}', [UserProfileController::class, 'profileUser'])->name('user.profile');
 Route::post('/user/profile/{id}/update', [UserProfileController::class, 'updateProfile'])->name('user.updateProfile');
+
+Route::get('/user/orders/{id}', [OrderController::class, 'ordersUser'])->name('user.orders');
+
+Route::get('/user/orders/{id}/detail', [OrderController::class, 'orderDetail'])->name('orders.detail');
 
 Route::get('signout', [UserController::class, 'signOut'])->name('signout');
 

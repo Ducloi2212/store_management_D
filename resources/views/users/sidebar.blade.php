@@ -19,13 +19,16 @@
     <h3 class="my-h3"><b>My Account</b></h3>
     <ul class="profile-menu">
         <a href="{{route('user.profile', ['id' => Auth::user()->id])}}" class="a">
-            <li class="{{ request()->routeIs('profile') ? 'active' : '' }}">Profile</li>
+            <li class="{{ request()->routeIs('user.profile') ? 'active' : '' }}">Profile</li>
         </a>
-        <a href="" class="a">
-        <li class="{{ request()->routeIs('profile') ? 'active' : '' }}">Order</li>
+        <a href="{{route('user.orders', ['id' => Auth::user()->id])}}" class="a">
+        <li class="{{ request()->routeIs('user.orders') ? 'active' : '' }}">Order</li>
         </a>
         <a href="{{route('user.profile', ['id' => Auth::user()->id])}}" class="a">
         <li>Reset Password</li>
+        </a>
+        <a href="{{route('user.profile', ['id' => Auth::user()->id])}}" class="waring-a">
+        <li>Delete account</li>
         </a>
         <a href="{{route('signout')}}" class="a">
         <li>Log Out</li>

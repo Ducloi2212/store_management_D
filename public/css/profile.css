@@ -118,6 +118,11 @@ body {
   color: #212529;
   cursor: pointer;
 }
+.waring-a {
+  text-decoration: none;
+  color: red;
+  cursor: pointer;
+}
 
 .profile-menu li {
   padding: 10px;
