@@ -29,32 +29,32 @@
                     </li>
                     @guest
                     <li class="nav-item">
-                        <a class="nav-link" href="">Login</a>
+                        <a class="nav-link" href="{{ route ('login') }}">Login</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Sign Up</a>
+                        <a class="nav-link" href="{{ route ('user.create') }}">Sign Up</a>
                     </li>
                     @else
                     <li class="nav-item">
-                        <a class="nav-link" href="">Log out</a>
+                        <a class="nav-link" href="{{ route ('signout') }}">Log out</a>
                     </li>
                     @endguest
                 </ul>
-                <form class="d-flex" role="search">
+                <form class="d-flex" action="{{ route('products.search') }}" method="GET" role="search">
                     <div class="search-bar d-flex align-items-center">
                         <button type="submit" class="search-btn">
                             <i class='bx bx-search'></i>
                         </button>
-                        <input type="text" class="form-control p-0" placeholder="">
+                        <input type="text"name="query" class="form-control p-0" placeholder="" value="{{ request('query') }}">
                     </div>
                 </form>
                 @guest
                 @else
                 <div class="mx-2">
-                    <a class=" btn btn-success" href="#"><i class='bx bxs-cart fs-6'></i>Cart</a>
+                    <a class=" btn btn-success" href="{{route('cart.list')}}"><i class='bx bxs-cart fs-6'></i>Cart</a>
                 </div>
                 <div class="">
-                    <a class=" btn btn-success" href="#"><i class='bx bxs-user'></i>{{ Auth::user()->name }}</a>
+                    <a class=" btn btn-success" href="{{route('user.profile', ['id' => Auth::user()->id])}}"><i class='bx bxs-user'></i>{{ Auth::user()->name }}</a>
                 </div>
                 @endguest
             </div>
