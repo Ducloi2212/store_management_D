@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
 use App\Models\User;
+use App\Models\UserProfile;
+
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -12,6 +14,7 @@ class UserController extends Controller
 {
     public function login()
     {
+
         return view('users.login');
     }
 
@@ -58,12 +61,17 @@ class UserController extends Controller
         return redirect("login");
     }
 
-     public function profileUser(Request $request)
+    public function delete($id)
     {
-        $user_id = $request->get('id');
-        $user = User::find($user_id);
+        $user = User::findOrFail($id);
+        if (auth()->id() != $user->id) {
+            abort(403, 'Unauthorized action.');
+        }
 
-        return view('users.profile', ['user' => $user]);
+        $user->delete();
+        auth()->logout();
+
+        return redirect('home')->with('success', 'Tài khoản đã được xóa thành công.');
     }
 
     public function signOut()
