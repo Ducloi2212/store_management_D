@@ -40,12 +40,12 @@
                     </li>
                     @endguest
                 </ul>
-                <form class="d-flex" role="search">
+                <form class="d-flex" action="{{ route('products.search') }}" method="GET" role="search">
                     <div class="search-bar d-flex align-items-center">
                         <button type="submit" class="search-btn">
                             <i class='bx bx-search'></i>
                         </button>
-                        <input type="text" class="form-control p-0" placeholder="">
+                        <input type="text"name="query" class="form-control p-0" placeholder="" value="{{ request('query') }}">
                     </div>
                 </form>
                 @guest

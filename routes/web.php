@@ -38,6 +38,8 @@ Route::post('/user/change-password', [UserProfileController::class, 'changePassw
 
 Route::delete('/user/{id}', [UserController::class, 'delete'])->name('user.delete');
 
+Route::get('/products/search', [ProductController::class, 'search'])->name('products.search');
+
 Route::get('signout', [UserController::class, 'signOut'])->name('signout');
 
 Route::get('/', function () {
