@@ -17,6 +17,8 @@ Route::get('/category', [CategoryController::class, 'categoryProduct'])->name('c
 Route::get('/product', [ProductController::class, 'productDetail'])->name('product.detail');
 
 Route::get('/cart', [CartController::class, 'cartList'])->name('cart.list');
+Route::post('/cart/add/{id}', [CartController::class, 'addToCart'])->name('cart.add');
+
 
 Route::get('/checkout', [CheckOutController::class, 'checkOut'])->name('cart.checkOut');
 

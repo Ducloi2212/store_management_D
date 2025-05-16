@@ -37,24 +37,27 @@
                     </div>
                 </div>
 
-                <div class="d-flex flex-row mb-3 mt-4">
-                    <div class="p-1 my-2">
-                        <h6>Số lượng</h6>
+                <form action="{{ route('cart.add', $product->id) }}" method="POST">
+                    @csrf
+                    <div class="d-flex flex-row mb-3 mt-4">
+                        <div class="p-1 my-2">
+                            <h6>Số lượng</h6>
+                        </div>
+                        <div class="p-1">
+                            <span class="btn btn-light"><i class='bx bx-minus'></i></span>
+                            <input type="number" name="quantity" value="1" min="1" class="mx-2">
+                            <span class="btn btn-light"><i class='bx bx-plus'></i></span>
+                        </div>
                     </div>
-                    <div class="p-1">
-                        <span class="btn btn-light"><i class='bx bx-minus'></i></span>
-                        <span class="mx-2"> 01 </span>
-                        <span class="btn btn-light"><i class='bx bx-plus'></i></span>
-                    </div>
-                </div>
 
-                <div class="">
-                    <a href="{{route('cart.list')}}" class="addcart-btn mt-4"><i class='bx bx-cart-add'></i> Add to Cart</a>
-                    <button class="buy-btn mt-4">Buy Now</button>
-                </div>
+                    <div class="">
+                        <button class="addcart-btn mt-4"><i class='bx bx-cart-add'></i> Add to Cart</button>
+                </form>
+                <button class="buy-btn mt-4">Buy Now</button>
             </div>
         </div>
     </div>
+</div>
 </div>
 
 <section class="container">

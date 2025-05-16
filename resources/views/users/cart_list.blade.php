@@ -14,6 +14,7 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-12">
+                @if (count($cart) > 0)
                 <table class="table">
                     <thead>
                         <tr>
@@ -35,34 +36,38 @@
                         </tr>
                     </thead>
                     <tbody>
+                        @foreach ($cart as $item)
                         <tr>
                             <th scope="row">
                                 <div class="d-flex">
                                     <div class="">
-                                        <img src="{{ asset('images/products/phone/ip12pm.jpg') }}" style="width:70px"
+                                        <img src="{{ asset($item->image) }}" style="width:70px"
                                             alt="image" class="rounded-3">
                                     </div>
                                     <div class="p-3">
-                                        <h5>Iphone 12 Pro Max</h5>
+                                        <h5>{{ $item->name }}</h5>
                                     </div>
                                 </div>
                             </th>
-                            <td> 11990000đ</td>
+                            <td> {{ number_format($item->price) }}đ</td>
                             <td>
                                 <div class="d-flex flex-row mb-3">
                                     <div class="p-1">
                                         <span class="btn btn-light btn-sm"><i class='bx bx-minus'></i></span>
-                                        <span class="mx-2"> 01 </span>
+                                        <span class="mx-2"> {{ $item->quantity }} </span>
                                         <span class="btn btn-light btn-sm"><i class='bx bx-plus'></i></span>
                                     </div>
                                 </div>
                             </td>
-                            <td>11990000đ</td>
+                            <td>{{ number_format($item->price * $item->quantity) }}đ</td>
                             <td><a href="" class="btn btn-light"><i class='bx bxs-trash text-danger'></i></a></td>
                         </tr>
+                        @endforeach
                     </tbody>
                 </table>
-
+                @else
+                <p>Giỏ hàng trống!!</p>
+                @endif
             </div>
         </div>
         <!--Cart footer-->
