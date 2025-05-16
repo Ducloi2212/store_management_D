@@ -92,7 +92,7 @@
                 <button class="delete">Delete</button>
             </div>
             <div class="right-actions">
-                <span class="total">Total (1 item): <b>11990000đ</b></span>
+                <span class="total">Total (1 item): <b>{{ number_format($total) }}đ</b></span>
                 <a href="{{route('cart.checkOut')}}" class="checkout-btn">Check Out</a>
             </div>
         </div>
