@@ -5,15 +5,17 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\UserProfile;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class UserProfileController extends Controller
 {
 
     public function profileUser($id)
-{
-    $user = User::with('profile')->findOrFail($id);
-    return view('users.profile', ['user' => $user]);
-}
+    {
+        $user = User::with('profile')->findOrFail($id);
+        return view('users.profile', ['user' => $user]);
+    }
 
     public function updateProfile(Request $request, $id)
     {
@@ -46,5 +48,30 @@ class UserProfileController extends Controller
     $profile->save();
 
     return redirect()->route('user.profile', ['id' => $user->id])->with('success', 'Cập nhật thành công!');
+    }
+
+    public function showChangePasswordForm($id)
+    {
+         $user = User::with('profile')->findOrFail($id);
+        return view('users.change_password', ['user' => $user]);
+    }
+
+    public function changePassword(Request $request)
+    {
+        $request->validate([
+            'current_password' => 'required',
+            'new_password' => 'required|string|min:8|confirmed',
+        ]);
+
+        $user = Auth::user();
+
+        if (!Hash::check($request->current_password, $user->password)) {
+            return back()->withErrors(['current_password' => 'Mật khẩu hiện tại không đúng']);
+        }
+
+        $user->password = Hash::make($request->new_password);
+        $user->save();
+
+        return redirect()->back()->with('success', 'Đổi mật khẩu thành công!');
     }
 }

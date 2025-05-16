@@ -22,16 +22,16 @@
             <li class="{{ request()->routeIs('user.profile') ? 'active' : '' }}">Profile</li>
         </a>
         <a href="{{route('user.orders', ['id' => Auth::user()->id])}}" class="a">
-        <li class="{{ request()->routeIs('user.orders') ? 'active' : '' }}">Order</li>
+            <li class="{{ request()->routeIs('user.orders') ? 'active' : '' }}">Order</li>
         </a>
-        <a href="{{route('user.profile', ['id' => Auth::user()->id])}}" class="a">
-        <li>Reset Password</li>
+        <a href="{{route('user.showChangePassword', ['id' => Auth::user()->id])}}" class="a">
+            <li class="{{ request()->routeIs('user.showChangePassword') ? 'active' : '' }}">Reset Password</li>
         </a>
         <a href="{{route('user.profile', ['id' => Auth::user()->id])}}" class="waring-a">
-        <li>Delete account</li>
+            <li>Delete account</li>
         </a>
         <a href="{{route('signout')}}" class="a">
-        <li>Log Out</li>
+            <li>Log Out</li>
         </a>
     </ul>
 </div>
