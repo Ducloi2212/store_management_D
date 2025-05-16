@@ -61,6 +61,19 @@ class UserController extends Controller
         return redirect("login");
     }
 
+    public function delete($id)
+    {
+        $user = User::findOrFail($id);
+        if (auth()->id() != $user->id) {
+            abort(403, 'Unauthorized action.');
+        }
+
+        $user->delete();
+        auth()->logout();
+
+        return redirect('home')->with('success', 'Tài khoản đã được xóa thành công.');
+    }
+
     public function signOut()
     {
         Session::flush();

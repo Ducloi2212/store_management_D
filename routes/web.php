@@ -36,6 +36,8 @@ Route::get('/user/orders/{id}/detail', [OrderController::class, 'orderDetail'])-
 Route::get('/user/{id}/change-password', [UserProfileController::class, 'showChangePasswordForm'])->name('user.showChangePassword');
 Route::post('/user/change-password', [UserProfileController::class, 'changePassword'])->name('user.changePassword');
 
+Route::delete('/user/{id}', [UserController::class, 'delete'])->name('user.delete');
+
 Route::get('signout', [UserController::class, 'signOut'])->name('signout');
 
 Route::get('/', function () {

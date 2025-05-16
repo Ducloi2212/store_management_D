@@ -119,6 +119,7 @@ body {
   color: #212529;
   cursor: pointer;
 }
+
 .waring-a {
   text-decoration: none;
   color: red;
@@ -140,4 +141,40 @@ body {
 
 .my-h3 {
   margin-top: 20px;
+}
+
+.modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modal-content {
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  width: 300px;
+  text-align: center;
+}
+
+.btn-red {
+  padding: 10px 20px;
+  margin-bottom: 6px;
+  border-radius: 7px;
+  background-color: #ee4d2d;
+  color: #fff;
+}
+
+.btn-out {
+  padding: 10px 20px;
+  margin-top: 4px;
+  border-radius: 7px;
+  border: 1px solid #212529;
 }
