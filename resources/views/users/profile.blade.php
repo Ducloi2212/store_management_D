@@ -11,7 +11,7 @@
 <section class="container">
     @include('users.sidebar')
     <div class="profile-content">
-        @include('users.reset_password')
+        @include('users.infomation')
     </div>
 </section>
 @endsection

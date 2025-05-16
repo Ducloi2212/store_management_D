@@ -7,6 +7,7 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\CheckOutController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\UserProfileController;
 
 Route::get('/home', [HomeController::class, 'home'])->name('home');
 
@@ -24,7 +25,8 @@ Route::post('/login', [UserController::class, 'authUser'])->name('user.authUser'
 Route::get('/create', [UserController::class, 'createUser'])->name('user.create');
 Route::post('/create', [UserController::class, 'postUser'])->name('user.postUser');
 
-Route::get('/profile', [UserController::class, 'profileUser'])->name('user.profile');
+Route::get('/user/profile/{id}', [UserProfileController::class, 'profileUser'])->name('user.profile');
+Route::post('/user/profile/{id}/update', [UserProfileController::class, 'updateProfile'])->name('user.updateProfile');
 
 Route::get('signout', [UserController::class, 'signOut'])->name('signout');
 
