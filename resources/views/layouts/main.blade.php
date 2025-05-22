@@ -1,5 +1,8 @@
-@include('layouts.navbar')
+  <div class="wrapper">
+      @include('layouts.navbar')
+      <div class="main">
+          @yield('content')
+      </div>
 
-@yield('content')
-
-@include('layouts.footer')
+      @include('layouts.footer')
+  </div>

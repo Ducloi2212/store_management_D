@@ -10,7 +10,7 @@
                     <img src="{{ asset($product->image) }}" class="card-img-top" alt="image">
                     <div class="card-body">
                         <h6 class="text-dark card-title">{{ $product->name }}</h6>
-                        <p class="text-danger fw-bold mb-1">{{ $product->price }} ₫</p>
+                        <p class="text-danger fw-bold mb-1">{{ number_format($product->price) }} ₫</p>
                         <div class="text-warning mb-1">
                             ★★★★★ (0 đánh giá)
                         </div>
