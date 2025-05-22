@@ -1,3 +1,4 @@
+
 .color {
     background: #ff711b;
 }
@@ -192,4 +193,18 @@ a {
 
 .main {
     flex: 1;
+}
+
+.avatar-icon
+{
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-right: 8px;
+}
+
+.border {
+    border: none;
+    outline: none; 
 }

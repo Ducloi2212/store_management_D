@@ -14,49 +14,50 @@
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-lg color">
-        <div class="container-fluid">
+    <nav class="navbar navbar-expand-lg color sticky-top">
+    <div class="container-fluid d-flex justify-content-between align-items-center mx-4">
+        <!-- Left: Logo + Menu -->
+        <div class="d-flex align-items-center">
             <a class="navbar-brand" href="#">Store Managment</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
-                aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="{{ route ('home') }}">Home</a>
-                    </li>
-                    @guest
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ route ('login') }}">Login</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ route ('user.create') }}">Sign Up</a>
-                    </li>
-                    @else
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ route ('signout') }}">Log out</a>
-                    </li>
-                    @endguest
-                </ul>
-                <form class="d-flex" action="{{ route('products.search') }}" method="GET" role="search">
-                    <div class="search-bar d-flex align-items-center">
-                        <button type="submit" class="search-btn">
-                            <i class='bx bx-search'></i>
-                        </button>
-                        <input type="text"name="query" class="form-control p-0" placeholder="" value="{{ request('query') }}">
-                    </div>
-                </form>
+            <ul class="navbar-nav ms-3 mb-2 mb-lg-0 d-flex flex-row">
+                <li class="nav-item me-3">
+                    <a class="nav-link active" aria-current="page" href="{{ route('home') }}">Home</a>
+                </li>
                 @guest
+                    <li class="nav-item me-3">
+                        <a class="nav-link" href="{{ route('login') }}">Login</a>
+                    </li>
+                    <li class="nav-item me-3">
+                        <a class="nav-link" href="{{ route('user.create') }}">Sign Up</a>
+                    </li>
                 @else
-                <div class="mx-2">
-                    <a class=" btn btn-success" href="{{route('cart.list')}}"><i class='bx bxs-cart fs-6'></i>Cart</a>
-                </div>
-                <div class="">
-                    <a class=" btn btn-success" href="{{route('user.profile', ['id' => Auth::user()->id])}}"><i class='bx bxs-user'></i>{{ Auth::user()->name }}</a>
-                </div>
                 @endguest
-            </div>
+            </ul>
         </div>
-    </nav>
+
+        <!-- Center: Search bar -->
+        <form class="d-flex mx-auto w-50 my-2" action="{{ route('products.search') }}" method="GET" role="search">
+            <div class="input-group">
+                <button class="input-group-text bg-white border-end-0"><i class='bx bx-search fs-3'></i></button>
+                <input type="text" name="query" class="form-control border-start-0" placeholder="Tìm kiếm sản phẩm..."
+                    value="{{ request('query') }}">
+            </div>
+        </form>
+
+        <!-- Right: Cart + Profile -->
+        @guest
+        @else
+            <div class="d-flex align-items-center">
+                <a class="btn d-flex align-items-center text-white border-0 me-2 " style="background-color: transparent;"
+                    href="{{ route('cart.list') }}">
+                    <i class='bx bxs-cart fs-2 '></i><strong>Cart</strong>
+                </a>
+                <a class="btn d-flex align-items-center text-white border-0" style="background-color: transparent;"
+                    href="{{ route('user.profile', ['id' => Auth::user()->id]) }}">
+                    <img src="{{ Auth::user()->profile && Auth::user()->profile->avatar ? asset(Auth::user()->profile->avatar) : asset('images/users/user.jpg') }}" class="avatar-icon" alt="image">
+                    <strong>{{ Auth::user()->name }}</strong>
+                </a>
+            </div>
+        @endguest
+    </div>
+</nav>
