@@ -30,4 +30,5 @@
         </div>
     </div>
 </section>
+<hr>
 @include('users.comment')

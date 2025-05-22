@@ -23,6 +23,7 @@ Route::post('/cart/remove/{id}', [CartController::class, 'removeItem'])->name('c
 
 
 Route::get('/checkout', [CheckOutController::class, 'checkOut'])->name('cart.checkOut');
+Route::post('/checkout', [CheckOutController::class, 'processCheckout'])->name('cart.checkout.process');
 
 Route::get('/login', [UserController::class, 'login'])->name('login');
 Route::post('/login', [UserController::class, 'authUser'])->name('user.authUser');
