@@ -25,7 +25,7 @@
         @foreach($orders as $order)
         <tr>
             <th>
-                <a href="{{ route('admin.orders.show', $order->user->id) }}" style=" cursor: pointer;">
+                <a href="{{ route('admin.orders.show', $order->id) }}" style=" cursor: pointer;">
                 <h5 class="text-dark">{{ $order->user->name }}</h5>
             </a>
             </th>
