@@ -93,4 +93,7 @@
         @endforeach
     </div>
 </section>
+@push('script')
+<script src="{{asset('js/star.js')}}"></script>
+@endpush
 @endsection
