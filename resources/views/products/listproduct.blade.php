@@ -52,6 +52,6 @@
         </div>
 
         @endforeach
-
+        {{ $products->links('pagination::bootstrap-5') }}
     </div>
 </section>

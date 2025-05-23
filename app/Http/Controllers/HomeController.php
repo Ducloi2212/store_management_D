@@ -12,9 +12,9 @@ use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
 {
-    public function home()
+    public function home(Request $request)
     {
-        $products = Product::all();
+        $products = Product::with('reviews')->paginate(8);
         $products_rating = Product::with('reviews')->get();
         $categories = Category::all();
 

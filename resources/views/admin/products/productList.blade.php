@@ -1,3 +1,4 @@
+
 <h1>Danh sách sản phẩm</h1>
 <div class="d-flex justify-content-between align-items-center container-fluid">
     <a href="{{ route('admin.products.create') }}" class="btn color text-light mb-3">Thêm sản phẩm</a>
@@ -67,3 +68,6 @@
         @endforeach
     </tbody>
 </table>
+<div class="pagination-wrapper">
+    {{ $products->appends(request()->all())->links('pagination::bootstrap-5') }}
+</div>
