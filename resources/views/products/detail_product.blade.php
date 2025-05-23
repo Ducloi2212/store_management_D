@@ -19,7 +19,7 @@
             <div class="product-details">
                 <h1>{{$product -> name}}</h1>
                 <div class="price">
-                    <span>{{$product -> price}} đ</span> <span class="old-price"></span>
+                    <span>{{number_format($product->price) }} ₫</span>
                 </div>
                 <div class="shipping">
                     {{$product -> description}}
