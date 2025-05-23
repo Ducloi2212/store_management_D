@@ -43,9 +43,10 @@ public function update(Request $request, Category $category)
 {
     $request->validate([
         'name' => 'required|string|max:255',
+        'status' => 'required|string',
     ]);
 
-    $category->update($request->only('name'));
+    $category->update($request->only('name','status'));
 
     return redirect()->route('admin.categories.index')->with('success', 'Cập nhật danh mục thành công');
 }

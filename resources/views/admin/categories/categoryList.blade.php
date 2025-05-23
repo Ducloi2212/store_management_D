@@ -23,7 +23,9 @@
         @foreach($categories as $category)
         <tr>
             <th>
+                <a href="{{ route('admin.categories.edit', $category->id) }}" style=" cursor: pointer;">
                 <h5 class="text-dark">{{ $category->name }}</h5>
+            </a>
             </th>
             <td>{{ $category-> status }}</td>
             <td>
