@@ -13,7 +13,11 @@ class ReviewController extends Controller
             'product_id' => 'required|exists:products,id',
             'rating' => 'required|integer|min:1|max:5',
             'comment' => 'required|string|max:1000',
-        ]);
+        ],
+        [
+        'rating.min' => 'Vui lòng chọn số sao.',
+        'comment.required' => 'Vui lòng nhập bình luận.',
+    ]);
 
         $data = $request->all();
 

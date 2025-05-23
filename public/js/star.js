@@ -54,3 +54,33 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     });
 });
+
+document.addEventListener("DOMContentLoaded", function () {
+    const stars = document.querySelectorAll('.star-rating .fa-star');
+    const ratingInput = document.getElementById('rating-value');
+    const ratingError = document.getElementById('rating-error');
+
+    const commentInput = document.querySelector('textarea[name="comment"]');
+    const commentError = document.getElementById('comment-error');
+
+    stars.forEach((star, index) => {
+        star.addEventListener('click', function () {
+            ratingInput.value = this.dataset.value;
+
+            stars.forEach(s => s.classList.remove('checked'));
+            for (let i = 0; i <= index; i++) {
+                stars[i].classList.add('checked');
+            }
+
+            if (ratingError) {
+                ratingError.style.display = 'none';
+            }
+        });
+    });
+
+    commentInput?.addEventListener('input', function () {
+        if (this.value.trim() !== '' && commentError) {
+            commentError.style.display = 'none';
+        }
+    });
+});
