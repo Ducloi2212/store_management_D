@@ -29,14 +29,16 @@
         @foreach ($products as $product)
         <tr>
             <th scope="row">
-                <div class="d-flex">
-                    <div class="">
-                        <img src="{{ asset($product->image) }}" style="width:70px" alt="image" class="rounded-3">
+                <a href="{{ route('admin.products.edit', $product->id) }}" style=" cursor: pointer;">
+                    <div class="d-flex">
+                        <div class="">
+                            <img src="{{ asset($product->image) }}" style="width:70px" alt="image" class="rounded-3">
+                        </div>
+                        <div class="p-3">
+                            <h5 class="text-dark">{{ $product->name }}</h5>
+                        </div>
                     </div>
-                    <div class="p-3">
-                        <h5>{{ $product->name }}</h5>
-                    </div>
-                </div>
+                </a>
             </th>
             <td>{{ number_format($product->price) }}đ</td>
             <td>

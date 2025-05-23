@@ -41,13 +41,12 @@ class ProductController extends Controller
         ]);
 
         $data = $request->all();
-
         if ($request->hasFile('image')) {
             $image = $request->file('image');
             $filename = time() . '_' . $image->getClientOriginalName();
             $image->move(public_path('images/products/laptop'), $filename);
             $data['image'] = 'images/products/laptop/' . $filename;
-}
+        }
 
         Product::create($data);
 
@@ -56,7 +55,9 @@ class ProductController extends Controller
 
     public function edit(Product $product)
     {
-        return view('admin.products.edit', compact('product'));
+        $user = auth()->user();
+        $categories = Category::all();
+        return view('admin.products.edit', compact( 'product', 'categories', 'user'));
     }
 
     public function update(Request $request, Product $product)
@@ -65,14 +66,16 @@ class ProductController extends Controller
             'name' => 'required',
             'price' => 'required|numeric',
             'description' => 'nullable|string',
-            'image' => 'nullable|image|max:2048',
+            'image' => 'nullable|image|max:5120',
+            'category_id' => 'required|exists:categories,id',
         ]);
 
         $data = $request->all();
-
         if ($request->hasFile('image')) {
-            $path = $request->file('image')->store('products', 'public');
-            $data['image'] = $path;
+            $image = $request->file('image');
+            $filename = time() . '_' . $image->getClientOriginalName();
+            $image->move(public_path('images/products/laptop'), $filename);
+            $data['image'] = 'images/products/laptop/' . $filename;
         }
 
         $product->update($data);

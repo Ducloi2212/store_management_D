@@ -24,7 +24,7 @@
         </a>
         @if(auth()->user()->isAdmin())
         <a href="{{ route('admin.products.index') }}" class="a">
-            <li class="{{ request()->routeIs('admin.products.index') ? 'active' : '' }}">Products</li>
+            <li class="{{ request()->routeIs('admin.products.index') || request()->routeIs('admin.products.create') ? 'active' : '' }}">Products</li>
         </a>
         <a href="" class="a">
             <li class="">Categories</li>
