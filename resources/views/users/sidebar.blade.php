@@ -26,8 +26,8 @@
         <a href="{{ route('admin.products.index') }}" class="a">
             <li class="{{ request()->routeIs('admin.products.index') || request()->routeIs('admin.products.create') || request()->routeIs('admin.products.edit') ? 'active' : '' }}">Products</li>
         </a>
-        <a href="" class="a">
-            <li class="">Categories</li>
+        <a href="{{ route('admin.categories.index') }}" class="a">
+            <li class="{{ request()->routeIs('admin.categories.index') || request()->routeIs('admin.categories.create') || request()->routeIs('admin.categories.edit') ? 'active' : '' }}">Categories</li>
         </a>
         <a href="" class="a">
             <li class="">Orders (Admin)</li>
