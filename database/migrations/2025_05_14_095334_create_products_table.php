@@ -17,7 +17,10 @@ return new class extends Migration
             $table->float('price');
             $table->string('description');
             $table->string('image');
+            $table->unsignedBigInteger('category_id')->nullable();
             $table->timestamps();
+
+            $table->foreign('category_id')->references('id')->on('categories')->onDelete('set null');
         });
     }
 

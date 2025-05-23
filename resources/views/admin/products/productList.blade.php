@@ -42,13 +42,7 @@
             <td>
                 {{  \Illuminate\Support\Str::limit($product->description, 20) }}
             </td>
-            <td> @if ($product->categories->isNotEmpty())
-                @foreach ($product->categories as $category)
-                <span class="">{{ $category->name }}</span>
-                @endforeach
-                @else
-                <span class="">Chưa có</span>
-                @endif
+            <td>{{ $product->category?->name ?? 'Chưa có danh mục' }}</td>
             </td>
             <td>
                 <form action="" method="POST">

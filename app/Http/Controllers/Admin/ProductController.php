@@ -18,14 +18,16 @@ class ProductController extends Controller
     {
         $products = Product::all();
         $user = auth()->user();
-        $products = Product::with('categories')->get();
+        $products = Product::with('category')->get();
 
         return view('admin.products.index', compact('products', 'user'));
     }
 
     public function create()
     {
-        return view('admin.products.create');
+        $user = auth()->user();
+        $categories = Category::all();
+        return view('admin.products.create', compact( 'categories', 'user'));
     }
 
     public function store(Request $request)
@@ -34,15 +36,18 @@ class ProductController extends Controller
             'name' => 'required',
             'price' => 'required|numeric',
             'description' => 'nullable|string',
-            'image' => 'nullable|image|max:2048',
+            'image' => 'nullable|image|max:5120',
+            'category_id' => 'required|exists:categories,id',
         ]);
 
         $data = $request->all();
 
         if ($request->hasFile('image')) {
-            $path = $request->file('image')->store('products', 'public');
-            $data['image'] = $path;
-        }
+            $image = $request->file('image');
+            $filename = time() . '_' . $image->getClientOriginalName();
+            $image->move(public_path('images/products/laptop'), $filename);
+            $data['image'] = 'images/products/laptop/' . $filename;
+}
 
         Product::create($data);
 

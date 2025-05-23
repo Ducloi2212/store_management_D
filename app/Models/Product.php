@@ -25,9 +25,9 @@ class Product extends Model
         'image',
     ];
 
-    public function categories(): BelongsToMany
+    public function category()
     {
-        return $this->belongsToMany(Category::class , 'category_product');
+        return $this->belongsTo(Category::class);
     }
 
     public function reviews()

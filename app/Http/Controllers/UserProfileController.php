@@ -24,7 +24,7 @@ class UserProfileController extends Controller
         'gender' => 'nullable|in:male,female,other',
         'birthday' => 'nullable|date',
         'address' => 'nullable|string|max:255',
-        'avatar' => 'nullable|image|mimes:jpg,jpeg,png,gif|max:2048',
+        'avatar' => 'nullable|image|mimes:jpg,jpeg,png,gif|max:5120',
     ]);
 
     $user = User::findOrFail($id);
