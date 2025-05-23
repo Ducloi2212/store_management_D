@@ -9,12 +9,14 @@ use App\Http\Controllers\CheckOutController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\UserProfileController;
 use App\Http\Controllers\OrderController;
+use App\Http\Controllers\ReviewController;
 
 Route::get('/home', [HomeController::class, 'home'])->name('home');
 
 Route::get('/category', [CategoryController::class, 'categoryProduct'])->name('category.product');
 
 Route::get('/product', [ProductController::class, 'productDetail'])->name('product.detail');
+Route::post('/product/review', [ReviewController::class, 'reviewProduct'])->name('product.review');
 
 Route::get('/cart', [CartController::class, 'cartList'])->name('cart.list');
 Route::post('/cart/add/{id}', [CartController::class, 'addToCart'])->name('cart.add');
