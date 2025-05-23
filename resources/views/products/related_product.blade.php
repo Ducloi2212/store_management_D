@@ -1,7 +1,7 @@
 <section class="container mt-4">
     <div class="d-flex">
         <div class="flew-grow-1">
-            <h3>Sản phẩm liên quan</h3>
+            <h3>Related product</h3>
         </div>
     </div>
     <div class="row">

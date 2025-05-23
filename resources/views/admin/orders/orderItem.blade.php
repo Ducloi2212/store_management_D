@@ -1,16 +1,16 @@
-<h1>Chi tiết đơn hàng</h1>
+<h1>Order Item</h1>
 <div class="form-group">
-    <label for="username"> Tên: {{$order->name}} </label>
+    <label for="username"> Name: {{$order->name}} </label>
 </div>
 
 <div class="form-group">
-    <label for="username"> Tổng tiền: {{ number_format($order->total) }}đ</label>
+    <label for="username"> Quantity: {{ number_format($order->total) }}đ</label>
 </div>
 <form action="{{ route('admin.orders.update', $order->id) }}" method="post">
     @csrf
     @method('PUT')
     <div class="form-group">
-        <label for="categories">Trạng thái</label>
+        <label for="categories">Status</label>
         <select name="status" class="form-control">
             @foreach (['pending', 'shipped', 'delivered'] as $status)
             <option value="{{ $status }}" {{ $order->status == $status ? 'selected' : '' }}>
@@ -19,7 +19,7 @@
             @endforeach
         </select>
     </div>
-    <button type="submit" class="btn color text-light mb-3">Cập nhật</button>
+    <button type="submit" class="btn color text-light mb-3">Save</button>
 </form>
 
 @if(session('success'))

@@ -26,6 +26,12 @@ public function store(Request $request)
     $request->validate([
         'name' => 'required|string|max:255',
         'status' => 'required|string',
+    ], [
+        'name.required' => 'Vui lòng nhập tên danh mục.',
+        'name.string' => 'Tên danh mục phải là chuỗi.',
+        'name.max' => 'Tên danh mục không được vượt quá 255 ký tự.',
+        'status.required' => 'Vui lòng chọn trạng thái.',
+        'status.string' => 'Trạng thái không hợp lệ.',
     ]);
 
     Category::create($request->only('name','status'));
@@ -44,8 +50,14 @@ public function update(Request $request, Category $category)
     $request->validate([
         'name' => 'required|string|max:255',
         'status' => 'required|string',
+    ],
+    [
+        'name.required' => 'Vui lòng nhập tên danh mục.',
+        'name.string' => 'Tên danh mục phải là chuỗi.',
+        'name.max' => 'Tên danh mục không được vượt quá 255 ký tự.',
+        'status.required' => 'Vui lòng chọn trạng thái.',
+        'status.string' => 'Trạng thái không hợp lệ.',
     ]);
-
     $category->update($request->only('name','status'));
 
     return redirect()->route('admin.categories.index')->with('success', 'Cập nhật danh mục thành công');

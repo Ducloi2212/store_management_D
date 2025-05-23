@@ -14,7 +14,7 @@ class RoleSeeder extends Seeder
      */
     public function run(): void
     {
-        DB::table('roles')->insert([
+        DB::table('rolesphp artisan db:seed --class=RoleSeeder')->insert([
             [
                 'id' => 1,
                 'name' => 'admin',

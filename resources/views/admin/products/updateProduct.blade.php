@@ -1,5 +1,5 @@
 <div>
-    Chi tiết sản phẩm
+    <h2>Update Product</h2>
 </div>
 <hr>
 <form action="{{ route('admin.products.update', $product->id) }}" method="POST" enctype="multipart/form-data">
@@ -9,20 +9,20 @@
         <div class="col-lg-8">
             <div class="profile-section">
                 <div class="form-group">
-                    <label for="username">Tên sản phẩm</label>
+                    <label for="username">Name</label>
                     <input type="text" name="name" id="" value="{{ $product->name }}">
                 </div>
                 <div class="form-group">
-                    <label for="email">Giá</label>
+                    <label for="email">Price</label>
                     <input type="text" name="price" id="" value="{{ $product->price }}">
                 </div>
                 <div class="form-group">
-                    <label for="phone">Mô tả</label>
+                    <label for="phone">Decription</label>
                     <input type="text" name="description" id="" value="{{ $product->description }}">
                 </div>
 
                 <div class="form-group">
-                    <label for="categories">Danh mục</label>
+                    <label for="categories">Category</label>
                     <select name="category_id" class="form-control">
                         @if($product->category_id == 0 || $product->category_id == "")
                         <option value="0" selected>--Chọn Danh Mục--</option>

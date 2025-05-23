@@ -1,5 +1,5 @@
 <div>
-    Thêm sản phẩm
+    <h2>Add Category</h2>
 </div>
 <hr>
 <form action="{{ route('admin.categories.store') }}" method="POST" enctype="multipart/form-data">
@@ -8,12 +8,18 @@
             <div class="profile-section">
                 @csrf
                 <div class="form-group">
-                    <label for="username">Tên Danh Mục</label>
+                    <label for="username">Name</label>
                     <input type="text" name="name" id="" value="">
+                    @error('name')
+            <small class="text-danger">{{ $message }}</small>
+        @enderror
                 </div>
                 <div class="form-group">
-                    <label for="email">Trạng thái</label>
+                    <label for="email">Status</label>
                     <input type="text" name="status" id="" value="">
+                    @error('status')
+            <small class="text-danger">{{ $message }}</small>
+        @enderror
                 </div>
 
                 <div style="margin-top: 20px;">
@@ -23,12 +29,3 @@
         </div>
     </div>
 </form>
-@if ($errors->any())
-    <div class="alert alert-danger">
-        <ul>
-            @foreach ($errors->all() as $error)
-                <li>{{ $error }}</li>
-            @endforeach
-        </ul>
-    </div>
-@endif

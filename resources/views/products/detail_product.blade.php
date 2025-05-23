@@ -7,7 +7,7 @@
 @endpush
 @section('content')
 <div class="container-fluid bg-light p-5">
-    <h1 class="text-center text-secondary"><i class='bx bxs-layer'></i> Thông tin Sản Phẩm</h1>
+    <h1 class="text-center text-secondary"><i class='bx bxs-layer'></i> Product Detail</h1>
 </div>
 <div class="container-product">
     <div class="row">
@@ -52,7 +52,7 @@
                     <input type="hidden" name="product_id" value="{{ $product->id }}">
                     <div class="d-flex flex-row mb-3 mt-4">
                         <div class="p-1 my-2">
-                            <h6>Số lượng</h6>
+                            <h6>Quantity</h6>
                         </div>
                         <div class="p-1 d-flex align-items-center">
                             <span class="btn btn-light quantity-btn" data-action="decrease"><i
@@ -69,7 +69,6 @@
                     <div class="">
                         <button class="addcart-btn mt-4"><i class='bx bx-cart-add'></i> Add to Cart</button>
                 </form>
-                <button class="buy-btn mt-4">Buy Now</button>
             </div>
         </div>
     </div>
