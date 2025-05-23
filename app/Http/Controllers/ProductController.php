@@ -16,11 +16,15 @@ class ProductController extends Controller
         $product = product::with('reviews.user')->find($product_id);
         $user = auth()->user(); 
 
+        $averageRating = $product->reviews()->avg('rating');
+
        $data = [
            'product' => $product,
            'products' => $products,
-           'user' => $user
+           'user' => $user,
+           'averageRating' => $averageRating
        ];
+
 
         return view('products.detail_product', $data);
     }
