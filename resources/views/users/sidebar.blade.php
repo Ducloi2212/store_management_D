@@ -23,8 +23,8 @@
             <li class="{{ request()->routeIs('user.profile') ? 'active' : '' }}">Profile</li>
         </a>
         @if(auth()->user()->isAdmin())
-        <a href="" class="a">
-            <li class="">Products</li>
+        <a href="{{ route('admin.products.index') }}" class="a">
+            <li class="{{ request()->routeIs('admin.products.index') ? 'active' : '' }}">Products</li>
         </a>
         <a href="" class="a">
             <li class="">Categories</li>
