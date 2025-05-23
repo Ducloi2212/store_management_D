@@ -21,12 +21,19 @@
                                         <span class="fa fa-star" data-value="{{ $i }}"></span>
                                     @endfor
                                     <strong id="rating-text" class="mx-3"></strong>
+                                    @error('rating')
+                                        <small id="rating-error" class="text-danger">{{ $message }}</small>
+                                    @enderror
                                 </div>
+                                
                             </div>
                         </div>
                         <div class="mb-3">
                             <textarea type="text" name="comment" class="form-control form-control-lg" placeholder="Bình luận"
                                 rows="2"></textarea>
+                            @error('comment')
+                                <small id="comment-error" class="text-danger">{{ $message }}</small>
+                            @enderror
                         </div>
                          <button class="btn btn-primary" type="submit">Gửi đánh giá</button>
                     </div>
