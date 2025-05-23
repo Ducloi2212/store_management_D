@@ -4,62 +4,35 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Order;
 
 class AdminOrderController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index()
     {
-        //
+        $user = auth()->user();
+        $orders = Order::with('user')->latest()->paginate(10);
+        return view('admin.orders.index', compact('orders','user'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
+    public function show(Order $order)
     {
-        //
+        $user = auth()->user();
+        $order->load('items.product');
+        return view('admin.orders.show', compact('order','user'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
+    public function update(Request $request, Order $order)
     {
-        //
+        $order->update([
+            'status' => $request->status
+        ]);
+        return redirect()->route('admin.orders.index')->with('success', 'Cập nhật trạng thái thành công!');
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
+    public function destroy(Order $order)
     {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
+        $order->delete();
+        return back()->with('success', 'Xóa đơn hàng thành công!');
     }
 }

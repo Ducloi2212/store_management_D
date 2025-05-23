@@ -29,8 +29,8 @@
         <a href="{{ route('admin.categories.index') }}" class="a">
             <li class="{{ request()->routeIs('admin.categories.index') || request()->routeIs('admin.categories.create') || request()->routeIs('admin.categories.edit') ? 'active' : '' }}">Categories</li>
         </a>
-        <a href="" class="a">
-            <li class="">Orders (Admin)</li>
+        <a href="{{ route('admin.orders.index') }}" class="a">
+            <li class="{{ request()->routeIs('admin.orders.index') || request()->routeIs('admin.orders.show') ? 'active' : '' }}">Orders (Admin)</li>
         </a>
         @else
         <a href="{{route('user.orders', ['id' => Auth::user()->id])}}" class="a">
