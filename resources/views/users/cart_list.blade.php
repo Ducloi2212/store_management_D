@@ -14,7 +14,9 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-12">
-                @if (count($cart) > 0)
+                @if($cartItems->isEmpty())
+                    <p>Giỏ hàng của bạn đang trống.</p>
+                @else
                 <table class="table">
                     <thead>
                         <tr>
@@ -36,31 +38,31 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($cart as $id => $item)
+                        @foreach($cartItems as $item)
                         <tr>
                             <th scope="row">
                                 <div class="d-flex">
                                     <div class="">
-                                        <img src="{{ asset($item['image']) }}" style="width:70px" alt="image"
+                                        <img src="{{ asset($item->product->image) }}" style="width:70px" alt="image"
                                             class="rounded-3">
                                     </div>
                                     <div class="p-3">
-                                        <h5>{{ $item['name'] }}</h5>
+                                        <h5>{{ $item->product->name }}</h5>
                                     </div>
                                 </div>
                             </th>
-                            <td> {{ number_format($item['price']) }}đ</td>
+                            <td> {{ number_format($item->product->price) }}đ</td>
                             <td>
                                 <div class="d-flex align-items-center">
                                     <div class="p-1">
-                                        <form action="{{ route('cart.updateQuantity', ['id' => $id]) }}" method="POST"
+                                        <form action="{{ route('cart.updateQuantity', $item->product->id) }}" method="POST"
                                             class="d-flex align-items-center">
                                             @csrf
                                             <input type="hidden" name="action" value="decrease">
                                             <button type="submit" name="action" value="decrease"
                                                 class="btn btn-outline-warning btn-sm"><i class='bx bx-minus'></i></button>
 
-                                            <span class="mx-3">{{ $item['quantity'] }}</span>
+                                            <span class="mx-3">{{ $item->quantity }}</span>
 
                                             <button type="submit" name="action" value="increase"
                                                 class="btn btn-outline-warning btn-sm"><i class='bx bx-plus'></i></button>
@@ -68,9 +70,9 @@
                                     </div>
                                 </div>
                             </td>
-                            <td>{{ number_format($item['price'] * $item['quantity']) }}đ</td>
+                            <td>{{ number_format($item->product->price * $item->quantity) }}đ</td>
                             <td>
-                                <form action="{{ route('cart.remove', ['id' => $id]) }}" method="POST">
+                                <form action="{{ route('cart.remove', $item->product->id) }}" method="POST">
                                     @csrf
                                     <button class="btn btn-light"><i class='bx bxs-trash text-danger'></i></button>
                                 </form>
@@ -79,8 +81,6 @@
                         @endforeach
                     </tbody>
                 </table>
-                @else
-                <p>Giỏ hàng trống!!</p>
                 @endif
             </div>
         </div>

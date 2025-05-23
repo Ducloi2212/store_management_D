@@ -49,6 +49,7 @@
 
                 <form action="{{ route('cart.add', $product->id) }}" method="POST">
                     @csrf
+                    <input type="hidden" name="product_id" value="{{ $product->id }}">
                     <div class="d-flex flex-row mb-3 mt-4">
                         <div class="p-1 my-2">
                             <h6>Số lượng</h6>
@@ -58,7 +59,7 @@
                                     class='bx bx-minus'></i></span>
 
                             <input type="number" name="quantity" value="1" min="1"
-                                class="mx-2 form-control text-center quantity-input" style="width: 45px; height: 30px; border: none;" readonly>
+                                class="mx-2 form-control text-center quantity-input" style="width: 60px; height: 30px; border: none;" readonly>
 
                             <span class="btn btn-light quantity-btn" data-action="increase"><i
                                     class='bx bx-plus'></i></span>
