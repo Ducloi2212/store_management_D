@@ -15,7 +15,12 @@ class HomeController extends Controller
     public function home()
     {
         $products = Product::all();
+        $products_rating = Product::with('reviews')->get();
         $categories = Category::all();
+
+        foreach ($products_rating as $product) {
+        $product->averageRating = $product->reviews->avg('rating');
+    }
         return view('home', ['products' => $products, 'categories' => $categories]);
     }
 }
