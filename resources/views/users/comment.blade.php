@@ -20,6 +20,7 @@
                                     @for ($i = 1; $i <= 5; $i++) 
                                         <span class="fa fa-star" data-value="{{ $i }}"></span>
                                     @endfor
+                                    <strong id="rating-text" class="mx-3"></strong>
                                 </div>
                             </div>
                         </div>
