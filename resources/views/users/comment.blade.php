@@ -35,7 +35,7 @@
                                 <small id="comment-error" class="text-danger">{{ $message }}</small>
                             @enderror
                         </div>
-                         <button class="btn btn-primary" type="submit">Gửi đánh giá</button>
+                         <button class="btn color text-light" type="submit">Submit a Review</button>
                     </div>
                 </div>
             </div>

@@ -27,21 +27,20 @@
                 <div class="d-flex flex-row mb-3">
                     <div class="my-1">
                         @php
-                            $rating = $averageRating ?? 0;
+                        $rating = $averageRating ?? 0;
                         @endphp
-                        @for ($i = 1; $i <= 5; $i++)
-                            @if ($rating >= $i)
-                                {{-- Full star --}}
-                                <span class="fa fa-star checked"></span>
+                        @for ($i = 1; $i <= 5; $i++) @if ($rating>= $i)
+                            {{-- Full star --}}
+                            <span class="fa fa-star checked"></span>
                             @elseif ($rating >= $i - 0.5)
-                                {{-- Half star --}}
-                                <span class="fa fa-star-half-o checked"></span>
+                            {{-- Half star --}}
+                            <span class="fa fa-star-half-o checked"></span>
                             @else
-                                {{-- Empty star --}}
-                                <span class="fa fa-star"></span>
+                            {{-- Empty star --}}
+                            <span class="fa fa-star"></span>
                             @endif
-                        @endfor
-                        <strong class="ms-2">({{ number_format($averageRating ?? 0, 1) }}/5)</strong>
+                            @endfor
+                            <strong class="ms-2">({{ number_format($averageRating ?? 0, 1) }}/5)</strong>
                     </div>
                     <div class="p-1 mx-2">
                         <p>({{ $product->reviews->count() }} lượt đánh giá)</p>
@@ -54,10 +53,15 @@
                         <div class="p-1 my-2">
                             <h6>Số lượng</h6>
                         </div>
-                        <div class="p-1">
-                            <span class="btn btn-light"><i class='bx bx-minus'></i></span>
-                            <input type="number" name="quantity" value="1" min="1" class="mx-2">
-                            <span class="btn btn-light"><i class='bx bx-plus'></i></span>
+                        <div class="p-1 d-flex align-items-center">
+                            <span class="btn btn-light quantity-btn" data-action="decrease"><i
+                                    class='bx bx-minus'></i></span>
+
+                            <input type="number" name="quantity" value="1" min="1"
+                                class="mx-2 form-control text-center quantity-input" style="width: 45px; height: 30px; border: none;" readonly>
+
+                            <span class="btn btn-light quantity-btn" data-action="increase"><i
+                                    class='bx bx-plus'></i></span>
                         </div>
                     </div>
 
@@ -80,5 +84,6 @@
 @include('products.related_product')
 @push('script')
 <script src="{{asset('js/star.js')}}"></script>
+<script src="{{asset('js/detail.js')}}"></script>
 @endpush
 @endsection
