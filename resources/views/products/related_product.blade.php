@@ -44,9 +44,9 @@
 
                     <div>
                         @if($reviewCount > 0)
-                            <span class="text-dark">({{ $reviewCount }} đánh giá)</span>
+                            <span class="text-warning">({{ $reviewCount }} đánh giá)</span>
                         @else
-                            <span class="text-dark">Chưa có đánh giá nào</span>
+                            <span class="text-warning">Chưa có đánh giá nào</span>
                         @endif
                     </div>
                 </div>

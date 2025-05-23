@@ -15,33 +15,34 @@
         <h3>Thông tin người nhận</h3>
         <div class="row">
             <div class="col-lg-12">
-                <form action="">
-
+                <form action="{{ route('cart.checkout.process') }}" method="POST">
+                    @csrf
                     <div class="row my-3">
-                        <form action="{{ route('cart.checkout.process') }}" method="POST">
-                            @csrf
-                            <div class="col-lg-6 mb-3">
-                                <input type="text" name="name" class="form-control form-control-lg" placeholder="" value="{{ old('name', auth()->user()->name ?? '') }}" disable>
-                            </div>
+                        <div class="col-lg-6 mb-3">
+                            <input type="text" name="name" class="form-control form-control-lg" placeholder="Name"
+                                value="{{ old('name', auth()->user()->name ?? '') }}" disable>
+                        </div>
 
-                            <div class="col-lg-6 mb-3">
-                                <input type="text" name="phone" class="form-control form-control-lg" placeholder="" value="{{ old('name', auth()->user()->phone ?? '') }}">
-                            </div>
+                        <div class="col-lg-6 mb-3">
+                            <input type="text" name="phone" class="form-control form-control-lg" placeholder="Phone"
+                                value="{{ old('name', auth()->user()->phone ?? '') }}">
+                        </div>
 
-                            <div class="col-lg-6 mb-3">
-                                <input type="email" name="email" class="form-control form-control-lg" placeholder="" value="{{ old('name', auth()->user()->email ?? '') }}">
-                            </div>
+                        <div class="col-lg-6 mb-3">
+                            <input type="email" name="email" class="form-control form-control-lg" placeholder="Email"
+                                value="{{ old('name', auth()->user()->email ?? '') }}">
+                        </div>
 
-                            <div class="col-lg-6 mb-3">
-                                <input type="text" name="address" class="form-control form-control-lg" placeholder="" value="{{ old('name', auth()->user()->address ?? '') }}">
-                            </div>
+                        <div class="col-lg-6 mb-3">
+                            <input type="text" name="address" class="form-control form-control-lg" placeholder="Address"
+                                value="{{ old('name', auth()->user()->address ?? '') }}">
+                        </div>
 
-                            <div class="col-lg-12 mb-3">
-                                <textarea type="text" name="note" class="form-control form-control-lg" placeholder="Ghi chú"
-                                    rows="4"></textarea>
-                            </div>
+                        <div class="col-lg-12 mb-3">
+                            <textarea type="text" name="note" class="form-control form-control-lg" placeholder="Note"
+                                rows="4"></textarea>
+                        </div>
                     </div>
-                </form>
             </div>
         </div>
     </div>
@@ -69,28 +70,28 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($cart as $id => $item)
+                        @foreach ($cartItems as $item)
                         <tr>
                             <th scope="row">
                                 <div class="d-flex">
                                     <div class="">
-                                        <img src="{{ asset($item['image']) }}" style="width:70px"
-                                            alt="image" class="rounded-3">
+                                        <img src="{{ asset($item->product->image) }}" style="width:70px" alt="image"
+                                            class="rounded-3">
                                     </div>
                                     <div class="p-3">
-                                        <h5>{{ $item['name'] }}</h5>
+                                        <h5>{{ $item->product->name }}</h5>
                                     </div>
                                 </div>
                             </th>
-                            <td> {{ number_format($item['price']) }}đ</td>
+                            <td> {{ number_format($item->product->price) }}đ</td>
                             <td>
                                 <div class="d-flex flex-row mb-3">
                                     <div class="p-1">
-                                        <span class="mx-2"> {{ $item['quantity'] }} </span>
+                                        <span class="mx-2"> {{ $item->quantity }} </span>
                                     </div>
                                 </div>
                             </td>
-                            <td>{{ number_format($item['price'] * $item['quantity']) }}đ</td>
+                            <td>{{ number_format($item->product->price * $item->quantity) }}đ</td>
                         </tr>
                         @endforeach
                     </tbody>
@@ -114,7 +115,7 @@
                 </div>
                 <div class="col-lg-6 right-actions">
                     <span class="total">Total (1 item): <b>{{ number_format($total) }}đ</b></span>
-                    <button class="btn color text-light rounded-pill">Thanh toán</button>
+                    <button class="btn color text-light rounded-pill">Order</button>
                 </div>
                 </form>
             </div>
