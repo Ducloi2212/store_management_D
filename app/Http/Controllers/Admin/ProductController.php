@@ -14,14 +14,29 @@ class ProductController extends Controller
         
     }
 
-    public function index()
+    public function index(Request $request)
     {
+        $query = Product::with('category');
         $products = Product::all();
         $user = auth()->user();
         $products = Product::with('category')->get();
 
+        if ($request->filled('search')) {
+            $search = $request->search;
+
+            $query->where(function ($q) use ($search) {
+                $q->where('name', 'like', "%{$search}%")
+                ->orWhereHas('category', function ($q2) use ($search) {
+                    $q2->where('name', 'like', "%{$search}%");
+                });
+            });
+        }
+
+        $products = $query->paginate(10);
+
         return view('admin.products.index', compact('products', 'user'));
     }
+
 
     public function create()
     {
@@ -81,5 +96,11 @@ class ProductController extends Controller
         $product->update($data);
 
         return redirect()->route('admin.products.index')->with('success', 'Cập nhật sản phẩm thành công!');
+    }
+
+    public function destroy(Product $product)
+    {
+        $product->delete();
+        return redirect()->route('admin.products.index')->with('success', 'Sản phẩm đã được xóa thành công!');
     }
 }
