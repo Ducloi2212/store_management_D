@@ -1,5 +1,5 @@
 <div>
-    Thêm sản phẩm
+    <h2>Add Product</h2>
 </div>
 <hr>
 <form action="{{ route('admin.products.store') }}" method="POST" enctype="multipart/form-data">
@@ -8,26 +8,38 @@
             <div class="profile-section">
                 @csrf
                 <div class="form-group">
-                    <label for="username">Tên sản phẩm</label>
+                    <label for="username">name</label>
                     <input type="text" name="name" id="" value="">
+                    @error('name')
+            <small class="text-danger">{{ $message }}</small>
+        @enderror
                 </div>
                 <div class="form-group">
-                    <label for="email">Giá</label>
-                    <input type="text" name="price" id="" value="">
+                    <label for="email">Price</label>
+                    <input type="text" name="price" id="" value="" oninput="this.value = this.value.replace(/[^0-9]/g, '')">
+                    @error('price')
+            <small class="text-danger">{{ $message }}</small>
+        @enderror
                 </div>
                 <div class="form-group">
-                    <label for="phone">Mô tả</label>
+                    <label for="phone">Descrition</label>
                     <input type="text" name="description" id="" value="">
+                    @error('description')
+            <small class="text-danger">{{ $message }}</small>
+        @enderror
                 </div>
 
                 <div class="form-group">
-                    <label for="categories">Danh mục</label>
+                    <label for="categories">Category</label>
                     <select name="category_id" class="form-control">
                         <option value="" selected>-- Chọn danh mục --</option>
                         @foreach ($categories as $category)
                         <option value="{{ $category->id }}">{{ $category->name }}</option>
                         @endforeach
                     </select>
+                    @error('category_id')
+            <small class="text-danger">{{ $message }}</small>
+        @enderror
                 </div>
 
                 <div style="margin-top: 20px;">
@@ -40,17 +52,11 @@
                 <img src="" alt="" id="avatar-preview" alt="Avatar">
                 <br>
                 <input type="file" id="avatar-upload" name="image" accept=".jpg,.jpeg,.png">
+                @error('image')
+            <small class="text-danger">{{ $message }}</small>
+        @enderror
                 <label for="avatar-upload">Select Image</label>
             </div>
         </div>
     </div>
 </form>
-@if ($errors->any())
-    <div class="alert alert-danger">
-        <ul>
-            @foreach ($errors->all() as $error)
-                <li>{{ $error }}</li>
-            @endforeach
-        </ul>
-    </div>
-@endif

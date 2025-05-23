@@ -1,7 +1,7 @@
 
-<h1>Danh sách sản phẩm</h1>
+<h1>Products</h1>
 <div class="d-flex justify-content-between align-items-center container-fluid">
-    <a href="{{ route('admin.products.create') }}" class="btn color text-light mb-3">Thêm sản phẩm</a>
+    <a href="{{ route('admin.products.create') }}" class=" btn color text-dảrk " style="border: 1px solid orange">Add</a>
     <form class=" mx-auto w-50 my-2" action="{{ route('admin.products.index') }}" method="GET" role="search">
         <div class="input-group">
             <button type="submit" class="input-group-text bg-white border-end-0"><i class='bx bx-search fs-3'></i></button>

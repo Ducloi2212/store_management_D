@@ -13,6 +13,7 @@
     <div class="profile-content">
         @include('users.infomation')
     </div>
+    
 </section>
 @endsection
 @push('script')

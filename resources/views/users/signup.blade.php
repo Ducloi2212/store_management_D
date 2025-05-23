@@ -11,7 +11,8 @@
     <div class="row">
         <div class="col-lg-8">
             <div class="product-image box-image">
-                <img src="{{ asset('images/store-974-moq-peripherals.jpg') }}" alt="Metal Build 1/72 Duke Of Wei Guo Gong">
+                <img src="{{ asset('images/store-974-moq-peripherals.jpg') }}"
+                    alt="Metal Build 1/72 Duke Of Wei Guo Gong">
             </div>
         </div>
         <div class="col-lg-4">
@@ -20,10 +21,19 @@
                 <form method="POST" action="{{ route('user.postUser') }}">
                     @csrf
                     <input type="text" name="name" id="name" placeholder="Name" class="input-field" />
-
+                    @error('name')
+                    <small class="text-danger">{{ $message }}</small>
+                    @enderror
                     <input type="email" name="email" id="email" placeholder="Email" class="input-field" />
+                    @error('email')
+                    <small class="text-danger">{{ $message }}</small>
+                    @enderror
                     <div class="password-field">
-                        <input type="password" name="password" id="password" placeholder="Password" class="input-field" />
+                        <input type="password" name="password" id="password" placeholder="Password"
+                            class="input-field" />
+                        @error('password')
+                        <small class="text-danger">{{ $message }}</small>
+                        @enderror
                     </div>
                     <button class="login-btn">REGISTER</button>
                 </form>

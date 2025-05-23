@@ -53,6 +53,14 @@ class ProductController extends Controller
             'description' => 'nullable|string',
             'image' => 'nullable|image|max:5120',
             'category_id' => 'required|exists:categories,id',
+        ],[
+            'name.required' => 'Vui lòng nhập tên sản phẩm.',
+            'price.required' => 'Vui lòng nhập giá sản phẩm.',
+            'price.numeric' => 'Giá phải là số.',
+            'image.image' => 'File phải là ảnh.',
+            'image.max' => 'Ảnh không được vượt quá 5MB.',
+            'category_id.required' => 'Vui lòng chọn danh mục.',
+            'category_id.exists' => 'Danh mục chọn không tồn tại.',
         ]);
 
         $data = $request->all();

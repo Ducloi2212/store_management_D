@@ -1,5 +1,5 @@
-<h1>Danh Mục</h1>
-<a href="{{ route('admin.categories.create') }}" class="btn color text-light mb-3">Thêm danh mục mới</a>
+<h1>Categories</h1>
+<a href="{{ route('admin.categories.create') }}" class="btn color text-dark mb-3" style="border: 1px solid orange">Add</a>
 
 @if(session('success'))
 <div class="alert alert-success">{{ session('success') }}</div>

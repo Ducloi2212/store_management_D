@@ -24,6 +24,10 @@ class UserController extends Controller
         $request->validate([
             'email' => 'required',
             'password' => 'required',
+        ],[
+            'email.required' => 'Vui lòng nhập email.',
+            'email.email' => 'Email không đúng định dạng.',
+            'password.required' => 'Vui lòng nhập mật khẩu.',
         ]);
 
         $credentials = $request->only('email', 'password');
@@ -33,7 +37,9 @@ class UserController extends Controller
                 ->withSuccess('Signed in');
         }
 
-        return redirect("login")->withSuccess('Login details are not valid');
+         return back()
+        ->withErrors(['password' => 'Email hoặc mật khẩu không đúng.'])
+        ->withInput();
     }
 
      public function createUser()
@@ -50,7 +56,14 @@ class UserController extends Controller
             'name' => 'required',
             'email' => 'required|email|unique:users',
             'password' => 'required|min:6',
-        ]);
+        ], [
+        'name.required' => 'Vui lòng nhập tên.',
+        'email.required' => 'Vui lòng nhập email.',
+        'email.email' => 'Email không hợp lệ.',
+        'email.unique' => 'Email đã được sử dụng.',
+        'password.required' => 'Vui lòng nhập mật khẩu.',
+        'password.min' => 'Mật khẩu phải ít nhất 6 ký tự.',
+    ]);
 
         $data = $request->all();
         $user = User::create([
@@ -65,7 +78,7 @@ class UserController extends Controller
             $user->roles()->attach($roleUser->id);
         }
 
-        return redirect("login");
+        return redirect("login")->with('success', 'Đăng ký thành công! Vui lòng đăng nhập.');
     }
 
     public function delete($id)

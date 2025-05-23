@@ -1,5 +1,5 @@
 <div>
-    Chi tiết sản phẩm
+    <h2>Category detail</h2>
 </div>
 <hr>
 <form action="{{ route('admin.categories.update', $category->id) }}" method="POST" enctype="multipart/form-data">
@@ -9,12 +9,18 @@
         <div class="col-lg-8">
             <div class="profile-section">
                 <div class="form-group">
-                    <label for="username">Tên Danh Mục</label>
+                    <label for="username">Name</label>
                     <input type="text" name="name" id="" value="{{ $category->name }}">
+                    @error('name')
+            <small class="text-danger">{{ $message }}</small>
+        @enderror
                 </div>
                 <div class="form-group">
-                    <label for="email">Trạng thái</label>
+                    <label for="email">Status</label>
                     <input type="text" name="status" id="" value="{{ $category->status }}">
+                    @error('status')
+            <small class="text-danger">{{ $message }}</small>
+        @enderror
                 </div>
             
                 <div style="margin-top: 20px;">

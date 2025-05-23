@@ -20,11 +20,18 @@ class UserProfileController extends Controller
     public function updateProfile(Request $request, $id)
     {
         $request->validate([
-        'phone' => 'nullable|string|max:20',
+        'phone' => 'nullable|string|max:10',
         'gender' => 'nullable|in:male,female,other',
         'birthday' => 'nullable|date',
         'address' => 'nullable|string|max:255',
         'avatar' => 'nullable|image|mimes:jpg,jpeg,png,gif|max:5120',
+    ], [
+        'phone.max' => 'Số điện thoại không được quá 110 ký tự.',
+        'gender.in' => 'Giới tính không hợp lệ.',
+        'birthday.date' => 'Ngày sinh không hợp lệ.',
+        'address.max' => 'Địa chỉ không được quá 255 ký tự.',
+        'avatar.image' => 'Tệp tải lên phải là hình ảnh.',
+        'avatar.max' => 'Ảnh đại diện không được lớn hơn 5MB.',
     ]);
 
     $user = User::findOrFail($id);
@@ -47,7 +54,7 @@ class UserProfileController extends Controller
 
     $profile->save();
 
-    return redirect()->route('user.profile', ['id' => $user->id])->with('success', 'Cập nhật thành công!');
+    return redirect()->route('user.profile', ['id' => $user->id])->with('success', 'Cập nhật thông tin cá nhân thành công!');
     }
 
     public function showChangePasswordForm($id)
@@ -61,7 +68,12 @@ class UserProfileController extends Controller
         $request->validate([
             'current_password' => 'required',
             'new_password' => 'required|string|min:6|confirmed',
-        ]);
+        ],[
+        'current_password.required' => 'Vui lòng nhập mật khẩu hiện tại.',
+        'new_password.required' => 'Vui lòng nhập mật khẩu mới.',
+        'new_password.min' => 'Mật khẩu mới phải có ít nhất 6 ký tự.',
+        'new_password.confirmed' => 'Xác nhận mật khẩu không khớp.',
+    ]);
 
         $user = Auth::user();
 
