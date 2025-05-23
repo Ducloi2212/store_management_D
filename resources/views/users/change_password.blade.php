@@ -1,6 +1,6 @@
 @extends('layouts.main')
 @push('title')
-<title>Profile</title>
+<title>Change Password</title>
 @endpush
 @push('link')
 <link rel="stylesheet" href="{{ asset('css/crud.css') }}">

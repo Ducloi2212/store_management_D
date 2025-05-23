@@ -1,5 +1,4 @@
 <section class="container mt-4">
-    <h4>IPHONE</h4>
     <div class="row">
 
         @foreach($products as $product)

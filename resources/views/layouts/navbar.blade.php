@@ -28,9 +28,6 @@
                     <li class="nav-item me-3">
                         <a class="nav-link" href="{{ route('login') }}">Login</a>
                     </li>
-                    <li class="nav-item me-3">
-                        <a class="nav-link" href="{{ route('user.create') }}">Sign Up</a>
-                    </li>
                 @else
                 @endguest
             </ul>
@@ -47,6 +44,7 @@
 
         <!-- Right: Cart + Profile -->
         @guest
+        
         @else
             <div class="d-flex align-items-center">
                 <a class="btn d-flex align-items-center text-white border-0 me-2 " style="background-color: transparent;"

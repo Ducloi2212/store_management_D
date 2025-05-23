@@ -67,8 +67,8 @@ class ProductController extends Controller
         if ($request->hasFile('image')) {
             $image = $request->file('image');
             $filename = time() . '_' . $image->getClientOriginalName();
-            $image->move(public_path('images/products/laptop'), $filename);
-            $data['image'] = 'images/products/laptop/' . $filename;
+            $image->move(public_path('images/products'), $filename);
+            $data['image'] = 'images/products/' . $filename;
         }
 
         Product::create($data);
@@ -97,8 +97,8 @@ class ProductController extends Controller
         if ($request->hasFile('image')) {
             $image = $request->file('image');
             $filename = time() . '_' . $image->getClientOriginalName();
-            $image->move(public_path('images/products/laptop'), $filename);
-            $data['image'] = 'images/products/laptop/' . $filename;
+            $image->move(public_path('images/products'), $filename);
+            $data['image'] = 'images/products/' . $filename;
         }
 
         $product->update($data);
