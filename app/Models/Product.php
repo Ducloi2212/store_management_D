@@ -9,7 +9,7 @@ use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
-class Product extends Authenticatable
+class Product extends Model
 {
     use HasFactory, Notifiable;
 
@@ -21,15 +21,14 @@ class Product extends Authenticatable
     protected $fillable = [
         'name',
         'price',
-        'quantity',
         'description',
         'image',
-        'status',
+        'category_id',
     ];
 
-    public function categories(): BelongsToMany
+    public function category()
     {
-        return $this->belongsToMany(Category::class , 'category_product');
+        return $this->belongsTo(Category::class);
     }
 
     public function reviews()

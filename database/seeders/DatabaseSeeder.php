@@ -6,7 +6,9 @@ namespace Database\Seeders;
 use App\Models\User;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+
 use App\Models\OrderItem;
+use App\Models\Role;
 
 class DatabaseSeeder extends Seeder
 {
@@ -15,9 +17,11 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        $this->call(ProductSeeder::class);
         $this->call(CategorySeeder::class);
-        $this->call(CategoryProductSeeder::class);
         $this->call(UserSeeder::class);
+        $this->call(RoleSeeder::class);
+        $this->call(RoleUserSeeder::class);
+        
+        $this->call(ProductSeeder::class);
     }
 }

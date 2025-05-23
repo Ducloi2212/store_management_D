@@ -221,6 +221,22 @@ a {
     color: orange;
 }
 
+.pagination .page-link {
+    color: #ff6600;
+    border-color: #ff6600;
+}
+
+.pagination .page-link:hover {
+    color: white;
+    background-color: #ff6600;
+    border-color: #ff6600;
+}
+
+.pagination .page-item.active .page-link {
+    background-color: #ff6600 !important;
+    border-color: #ff6600 !important;
+    color: white;
+}
 
 
 
