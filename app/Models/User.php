@@ -53,14 +53,16 @@ class User extends Authenticatable
 
     public function roles()
     {
-        return $this->belongsToMany(Role::class);
+        return $this->belongsToMany(Role::class, 'role_user');
     }
 
-    public function hasRole($role)
+    public function hasRole($roleName)
     {
-        if (is_string($role)) {
-            return $this->roles->contains('name', $role);
-        }
-        return !! $this->roles->intersect($role)->count();
+        return $this->roles()->where('name', $roleName)->exists();
+    }
+
+    public function isAdmin()
+    {
+        return $this->roles()->where('name', 'admin')->exists();
     }
 }

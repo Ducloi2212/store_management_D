@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
 use App\Models\User;
 use App\Models\UserProfile;
+use App\Models\Role;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -52,11 +53,17 @@ class UserController extends Controller
         ]);
 
         $data = $request->all();
-        $check = User::create([
+        $user = User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password'])
         ]);
+
+        $roleUser = Role::where('name', 'user')->first();
+
+        if ($roleUser) {
+            $user->roles()->attach($roleUser->id);
+        }
 
         return redirect("login");
     }
