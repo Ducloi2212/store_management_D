@@ -18,16 +18,17 @@ class AdminCategoryController extends Controller
 public function create()
 {
     $user = auth()->user();
-    return view('admin.categories.create','user');
+    return view('admin.categories.create',compact('user'));
 }
 
 public function store(Request $request)
 {
     $request->validate([
         'name' => 'required|string|max:255',
+        'status' => 'required|string',
     ]);
 
-    Category::create($request->only('name'));
+    Category::create($request->only('name','status'));
 
     return redirect()->route('admin.categories.index')->with('success', 'Thêm danh mục thành công');
 }
