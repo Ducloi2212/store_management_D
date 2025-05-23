@@ -11,7 +11,7 @@
     <div class="row">
         <div class="col-lg-8">
             <div class="product-image box-image">
-                <img src="{{ asset('images/users/gaming.jpg') }}" alt="Metal Build 1/72 Duke Of Wei Guo Gong">
+                <img src="{{ asset('images/store-974-moq-peripherals.jpg') }}" alt="Metal Build 1/72 Duke Of Wei Guo Gong">
             </div>
         </div>
         <div class="col-lg-4">
