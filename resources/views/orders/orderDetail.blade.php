@@ -42,7 +42,7 @@
                             <th scope="row">
                                 <div class="d-flex">
                                     <div class="">
-                                        <img src="{{ asset('images/products/phone/ip12pm.jpg') }}" style="width:70px"
+                                        <img src="{{ asset($item->product->image) }}" style="width:70px"
                                             alt="image" class="rounded-3">
                                     </div>
                                     <div class="p-3">
