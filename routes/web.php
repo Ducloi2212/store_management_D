@@ -50,7 +50,7 @@ Route::delete('/user/{id}', [UserController::class, 'delete'])->name('user.delet
 
 Route::get('/products/search', [ProductController::class, 'search'])->name('products.search');
 
-Route::middleware(['auth'])->prefix('admin')->name('admin.')->group(function () {
+Route::middleware(['auth', 'check.admin'])->prefix('admin')->name('admin.')->group(function () {
     Route::resource('products', AdminProductController::class);
     Route::resource('categories', AdminCategoryController::class);
     Route::resource('orders', AdminOrderController::class);

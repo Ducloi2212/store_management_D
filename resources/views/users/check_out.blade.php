@@ -24,8 +24,8 @@
                         </div>
 
                         <div class="col-lg-6 mb-3">
-                            <input type="text" name="phone" class="form-control form-control-lg" placeholder="Phone"
-                                value="{{ old('name', auth()->user()->phone ?? '') }}">
+                            <input type="text" name="phone" class="form-control form-control-lg" oninput="this.value = this.value.replace(/[^0-9]/g, '')" placeholder="Phone"
+                                value="{{ old('name', auth()->user()->phone ?? '') }} ">
                         </div>
 
                         <div class="col-lg-6 mb-3">

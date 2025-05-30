@@ -34,7 +34,7 @@
         </a>
         @else
         <a href="{{route('user.orders', ['id' => Auth::user()->id])}}" class="a">
-            <li class="{{ request()->routeIs('user.orders') ? 'active' : '' }}">Order</li>
+            <li class="{{ request()->routeIs('user.orders') || request()->routeIs('orders.detail') ? 'active' : '' }}">Order</li>
         </a>
         @endif
         <a href="{{route('user.showChangePassword', ['id' => Auth::user()->id])}}" class="a">

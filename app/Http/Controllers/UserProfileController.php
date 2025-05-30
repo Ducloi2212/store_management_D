@@ -13,6 +13,10 @@ class UserProfileController extends Controller
 
     public function profileUser($id)
     {
+        if (Auth::id() != $id) {
+            return response()->view('errors.unauthorized', [], 403);
+        }
+        
         $user = User::with('profile')->findOrFail($id);
         return view('users.profile', ['user' => $user]);
     }
