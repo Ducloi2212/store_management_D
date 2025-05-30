@@ -1,4 +1,4 @@
-@extends('layouts.main')
+@extends('layouts.error')
 
 @section('title', 'Trang không tồn tại')
 
