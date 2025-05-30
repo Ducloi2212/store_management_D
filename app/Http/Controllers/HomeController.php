@@ -14,7 +14,7 @@ class HomeController extends Controller
 {
     public function home(Request $request)
     {
-        $products = Product::with('reviews')->paginate(8);
+        $products = Product::with('reviews')->inRandomOrder()->paginate(8);
         $products_rating = Product::with('reviews')->get();
         $categories = Category::all();
 
