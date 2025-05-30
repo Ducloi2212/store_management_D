@@ -45,7 +45,22 @@
         </div>
     </div>
 </section>
+<!--Modal-->
+        <div id="confirmModal" class="modal" style="display: none;">
+            <div class="modal-content">
+                <p>Bạn có chắc muốn xóa tài khoản không?</p>
+                <button id="confirmDelete" class="btn btn-red">Xác nhận</button>
+                <button id="cancelDelete" class="btn btn-out">Hủy</button>
+            </div>
+        </div>
+        <!--Form delete-->
+        <form id="deleteForm" action="{{ route('user.delete', ['id' => Auth::user()->id]) }}" method="POST"
+            style="display:none;">
+            @csrf
+            @method('DELETE')
+        </form>
+
 @endsection
 @push('script')
-<script src="{{asset('js/script.js')}}"></script>
+<script src="{{asset('js/delete_form.js')}}"></script>
 @endpush

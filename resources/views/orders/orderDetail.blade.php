@@ -68,5 +68,6 @@
 </section>
 @endsection
 @push('script')
+<script src="{{asset('js/delete_form.js')}}"></script>
 <script src="{{asset('js/script.js')}}"></script>
 @endpush
