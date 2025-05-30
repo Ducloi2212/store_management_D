@@ -14,7 +14,7 @@ class UserProfileController extends Controller
     public function profileUser($id)
     {
         if (Auth::id() != $id) {
-            abort(403, 'Bạn không có quyền xem tài khoản này.');
+            return response()->view('errors.unauthorized', [], 403);
         }
         
         $user = User::with('profile')->findOrFail($id);
