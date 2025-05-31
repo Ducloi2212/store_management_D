@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Product;
 use App\Models\Category;
+use Carbon\Carbon;
 
 class ProductController extends Controller
 {
@@ -63,6 +64,7 @@ class ProductController extends Controller
             'category_id.exists' => 'Danh mục chọn không tồn tại.',
         ]);
 
+        
         $data = $request->all();
         if ($request->hasFile('image')) {
             $image = $request->file('image');
@@ -100,6 +102,18 @@ class ProductController extends Controller
             $image->move(public_path('images/products'), $filename);
             $data['image'] = 'images/products/' . $filename;
         }
+
+        if ($request->filled('updated_at')) {
+        $clientUpdatedAt = Carbon::parse($request->input('updated_at'));
+        $serverUpdatedAt = $product->updated_at;
+
+        if (!$clientUpdatedAt->eq($serverUpdatedAt)) {
+            return redirect()
+                ->back()
+                ->withInput()
+                ->with('error', 'Dữ liệu đã bị chỉnh sửa. Vui lòng tải lại trước khi cập nhật.');
+        }
+    }
 
         $product->update($data);
 
