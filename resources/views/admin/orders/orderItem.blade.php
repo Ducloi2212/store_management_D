@@ -9,6 +9,7 @@
 <form action="{{ route('admin.orders.update', $order->id) }}" method="post">
     @csrf
     @method('PUT')
+    <input type="hidden" name="updated_at" value="{{ $order->updated_at->toDateTimeString() }}">
     <div class="form-group">
         <label for="categories">Status</label>
         <select name="status" class="form-control">
@@ -25,6 +26,11 @@
 @if(session('success'))
 <div class="alert alert-success">{{ session('success') }}</div>
 @endif
+@if(session('error'))
+    <div class="alert alert-danger">
+        {{ session('error') }}
+    </div>
+@endif
 <table class="table">
     <thead>
         <tr>
@@ -39,9 +45,6 @@
             </th>
             <th scope="col">
                 <h5>Category</h5>
-            </th>
-            <th scope="col">
-                <h5>Action</h5>
             </th>
         </tr>
     </thead>
@@ -63,14 +66,6 @@
                 {{  \Illuminate\Support\Str::limit($item->product->description, 20) }}
             </td>
             <td>{{ $item->product->category?->name ?? 'Chưa có danh mục' }}</td>
-            </td>
-            <td>
-                <form action="{{ route('admin.orders.destroy', $order->id) }}" method="POST"
-                    onsubmit="return confirm('Bạn có chắc muốn xóa sản phẩm này không?');">
-                    @csrf
-                    @method('DELETE')
-                    <button class="btn btn-light"><i class='bx bxs-trash text-danger'></i></button>
-                </form>
             </td>
         </tr>
         @endforeach

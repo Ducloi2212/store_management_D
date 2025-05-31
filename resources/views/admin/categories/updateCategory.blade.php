@@ -5,6 +5,7 @@
 <form action="{{ route('admin.categories.update', $category->id) }}" method="POST" enctype="multipart/form-data">
     @csrf
     @method('PUT')
+    <input type="hidden" name="updated_at" value="{{ $category->updated_at->toDateTimeString() }}">
         <div class="row">
         <div class="col-lg-8">
             <div class="profile-section">
@@ -38,5 +39,10 @@
                 <li>{{ $error }}</li>
             @endforeach
         </ul>
+    </div>
+@endif
+@if(session('error'))
+    <div class="alert alert-danger">
+        {{ session('error') }}
     </div>
 @endif
