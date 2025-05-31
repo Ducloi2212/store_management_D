@@ -7,7 +7,7 @@
 @endpush
 @section('content')
 <div class="container-fluid bg-light p-5">
-    <h1 class="text-center text-secondary"><i class='bx bxs-cart'></i> Giỏ hàng</h1>
+    <h1 class="text-center text-secondary"><i class='bx bxs-cart'></i>Shopping Cart</h1>
 </div>
 <!--Cart List-->
 <section>
