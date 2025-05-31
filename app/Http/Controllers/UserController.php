@@ -15,6 +15,9 @@ class UserController extends Controller
 {
     public function login()
     {
+        if (auth()->check()) {
+        return redirect()->route('home');
+    }
 
         return view('users.login');
     }
@@ -44,6 +47,9 @@ class UserController extends Controller
 
      public function createUser()
     {
+        if (auth()->check()) {
+        return redirect()->route('home');
+    }
         return view('users.signup');
     }
 
