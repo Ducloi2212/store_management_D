@@ -41,6 +41,13 @@ class UserProfileController extends Controller
     $user = User::findOrFail($id);
     $profile = $user->profile ?? $user->profile()->create();
 
+    if ($request->filled('updated_at') && $profile->updated_at && $request->input('updated_at') != $profile->updated_at->toDateTimeString()) {
+        return redirect()
+            ->back()
+            ->withInput()
+            ->with('error', 'Dữ liệu đã bị chỉnh sửa. Vui lòng tải lại trước khi cập nhật.');
+    }
+
     $profile->phone = $request->phone;
     $profile->gender = $request->gender;
     $profile->birthday = $request->birthday;
@@ -55,6 +62,8 @@ class UserProfileController extends Controller
 
     $profile->avatar = 'images/users/' . $filename;
     }
+
+    
 
     $profile->save();
 

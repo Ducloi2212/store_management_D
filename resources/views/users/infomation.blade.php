@@ -9,6 +9,7 @@
             <form action="{{ route('user.updateProfile', ['id' => $user->id]) }}" method="POST"
                 enctype="multipart/form-data">
                 @csrf
+                <input type="hidden" name="updated_at" value="{{ optional($user->profile)->updated_at }}">
                 <div class="form-group">
                     <label for="username">Username</label>
                     <input type="text" name="username" id="username" value="{{ $user->name }}" disabled>
@@ -88,3 +89,8 @@
         {{ session('success') }}
     </div>
     @endif
+    @if(session('error'))
+    <div class="alert alert-danger">
+        {{ session('error') }}
+    </div>
+@endif

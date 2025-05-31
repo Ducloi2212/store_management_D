@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Category;
+use Carbon\Carbon;
 
 class AdminCategoryController extends Controller
 {
@@ -58,6 +59,19 @@ public function update(Request $request, Category $category)
         'status.required' => 'Vui lòng chọn trạng thái.',
         'status.string' => 'Trạng thái không hợp lệ.',
     ]);
+
+    if ($request->filled('updated_at')) {
+        $clientUpdatedAt = Carbon::parse($request->input('updated_at'));
+        $serverUpdatedAt = $category->updated_at;
+
+        if (!$clientUpdatedAt->eq($serverUpdatedAt)) {
+            return redirect()
+                ->back()
+                ->withInput()
+                ->with('error', 'Dữ liệu đã bị chỉnh sửa. Vui lòng tải lại trước khi cập nhật.');
+        }
+    }
+
     $category->update($request->only('name','status'));
 
     return redirect()->route('admin.categories.index')->with('success', 'Cập nhật danh mục thành công');
