@@ -16,6 +16,9 @@ class ProductController extends Controller
         $product = product::with('reviews.user')->find($product_id);
         $user = auth()->user(); 
 
+        if (!$product = Product::with('reviews.user')->find($product_id)) {
+            abort(404);
+        }
         $averageRating = $product->reviews()->avg('rating');
 
        $data = [

@@ -115,7 +115,7 @@
                 </div>
                 <div class="col-lg-6 right-actions">
                     <span class="total">Total (1 item): <b>{{ number_format($total) }}đ</b></span>
-                    <button class="btn color text-light rounded-pill">Order</button>
+                    <button class="btn color text-dark rounded-pill" style="border: 1px solid orange">Order</button>
                 </div>
                 </form>
             </div>
