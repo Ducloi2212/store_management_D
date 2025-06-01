@@ -84,6 +84,9 @@
                 @endif
             </div>
         </div>
+        @if(session('success'))
+        <div class="alert alert-success">{{ session('success') }}</div>
+        @endif
         <!--Cart footer-->
         <div class="cart-footer">
             <div class="left-actions">
