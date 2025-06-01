@@ -85,8 +85,15 @@ class ProductController extends Controller
         return view('admin.products.edit', compact( 'product', 'categories', 'user'));
     }
 
-    public function update(Request $request, Product $product)
+    public function update(Request $request, $id)
     {
+
+        try {
+            $product = Product::findOrFail($id);
+        } catch (ModelNotFoundException $e) {
+            return redirect()->route('admin.products.index')->with('error', 'Sản phẩm không tồn tại hoặc đã bị xóa.');
+        }
+
         $request->validate([
             'name' => 'required',
             'price' => 'required|numeric',
@@ -96,6 +103,7 @@ class ProductController extends Controller
         ]);
 
         $data = $request->all();
+
         if ($request->hasFile('image')) {
             $image = $request->file('image');
             $filename = time() . '_' . $image->getClientOriginalName();
