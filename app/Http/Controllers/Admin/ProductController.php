@@ -52,11 +52,12 @@ class ProductController extends Controller
             'name' => 'required',
             'price' => 'required|numeric',
             'description' => 'nullable|string',
-            'image' => 'nullable|image|max:5120',
+            'image' => 'required|image|max:5120',
             'category_id' => 'required|exists:categories,id',
         ],[
             'name.required' => 'Vui lòng nhập tên sản phẩm.',
             'price.required' => 'Vui lòng nhập giá sản phẩm.',
+            'image.required' => 'Vui lòng thêm ảnh sản phẩm.',
             'price.numeric' => 'Giá phải là số.',
             'image.image' => 'File phải là ảnh.',
             'image.max' => 'Ảnh không được vượt quá 5MB.',
